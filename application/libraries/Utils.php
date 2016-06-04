@@ -1,20 +1,29 @@
 <?php 
 
-	/**
-	* this is the default utils library.
-	* this is used to some method which is common to most of controllers
-	* ex : date() {return the actual date}
-	*/
-	class Utils extends AnotherClass
+	
+
+	 /**
+	  * 
+	  * @author rivail santos
+	  * this is the defaul library to common functions
+	  * to use this class just do this - utils->
+	  * 
+	  */
+
+	class Utils
 	{
 		
-		/*
+		function __construct()
+		{
+			setlocale(LC_ALL, "pt_BR", "pt_BR.iso-8859-1", "pt_BR.utf-8", "portuguese");
+            date_default_timezone_set('America/Sao_Paulo');
+		}
+		/**
 		*	@curDate - return the current date
 		*	$type - usa or br
 		* 	@format - (/) or (-)
 		*/
 		public function curDate ($type, $format) {
-			date_default_timezone_set('UTC');
 			$data = new Date();
 			
 			if(($type == "usa") && ($format == "-")){
