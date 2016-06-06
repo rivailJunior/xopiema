@@ -10,7 +10,7 @@ class Upload_imagem
 {
 
 	public $CI;
-
+	
 	// We'll use a constructor, as you can't directly call a function
 	// from a property definition.
 	function __construct()
@@ -24,7 +24,7 @@ class Upload_imagem
 	}
 
 
-	function uploadimagem($userfile, $_FILES, $pastadestino)
+	function uploadimagem($userfile, $files, $pastadestino)
 	{
 		// Put each errors and upload data to an array
 		$error = array();
@@ -37,14 +37,14 @@ class Upload_imagem
 			);
 		
 		$this->CI->upload->initialize($upload_conf);
-			//$_FILES['userfile']
-			foreach($userfile as $key=>$val)// Change $_FILES to new vars and loop them
+			//$files['userfile']
+			foreach($userfile as $key=>$val)// Change $files to new vars and loop them
 			{
 				$i = 1;
 				foreach($val as $v)
 				{
 					$field_name = "file_".$i;
-					$_FILES[$field_name][$key] = $v;
+					$files[$field_name][$key] = $v;
 					$i++;  
 
 				}
@@ -52,8 +52,8 @@ class Upload_imagem
 
         		unset($userfile);// Unset the useless one ;)
         		// main action to upload each file
-				//$_FILES
-			foreach($_FILES as $field_name => $file)
+				//$files
+			foreach($files as $field_name => $file)
 			{
 				
 				if ($this->CI->upload->do_upload($field_name))
