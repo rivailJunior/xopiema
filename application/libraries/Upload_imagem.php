@@ -2,7 +2,9 @@
 <?php if(!defined("BASEPATH")){ exit("No direct script access allowed"); }
 
 /**
-* 
+* @author rivail santos
+* @category library
+* @uses to permits upload multiples files in na input instance
 */
 class Upload_imagem
 {

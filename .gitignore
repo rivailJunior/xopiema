@@ -10,6 +10,7 @@ application/logs/*
 
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
+ci_session/*
 user_guide_src/cilexer/dist/*
 user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/

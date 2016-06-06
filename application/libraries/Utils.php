@@ -1,13 +1,9 @@
 <?php 
 
-	
-
 	 /**
-	  * 
 	  * @author rivail santos
-	  * this is the defaul library to common functions
-	  * to use this class just do this - utils->
-	  * 
+	  * @category library
+	  * @uses this is the most common functions
 	  */
 
 	class Utils
