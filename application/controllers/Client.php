@@ -25,6 +25,13 @@
 			$this->data['title'] = "Xo Piema";
 			$this->load->view('client/index', $this->data);
 		}//fim function
+		public function testeEmanuel()
+		{
+			$this->data['teste'] = "Emerson Apagado & ENOOOOOOO";
+			$this->load->view('client/emanuel',$this->data);
+
+			# code...
+		}
 
 	}//fim class
 
