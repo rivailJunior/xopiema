@@ -123,6 +123,7 @@
 	</div>
 
 	<!--container-->
+	<script type="text/javascript" src="<?php echo base_url('/assets/MDB/js/tether.min.js') ?>"></script>
 
     <!-- SCRIPTS -->
     <!-- Bootstrap core JavaScript -->

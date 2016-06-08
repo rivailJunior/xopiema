@@ -23,7 +23,7 @@
 		public function index()
 		{
 			$this->data['title'] = "Xo Piema";
-			$this->load->view('client/index', $this->data);
+			$this->load->view('client/principal', $this->data);
 		}//fim function
 		
 

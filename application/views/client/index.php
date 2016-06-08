@@ -1,23 +1,27 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+
+	<?php header('Access-Control-Allow-Origin:*'); ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Xo piema</title>
+    <title>Xo Piema</title>
 
 
-    <!-- Font Awesome -->
+    <!-- Font Awesome     -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
     <!-- Material Design Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo base_url('/assets/MDB/css/bootstrap.min.css') ?>" rel="stylesheet">
 
-    <!-- Material Design Bootstrap -->
+    <!-- Material Design Bootstrap   -->
     <link href="<?php echo base_url('/assets/MDB/css/mdb.min.css') ?>" rel="stylesheet">
+
     <style type="text/css">
     	.container{
     		padding-top: 80px;
@@ -215,8 +219,12 @@
     <!-- JQuery -->
     <script type="text/javascript" src="<?php echo base_url('/assets/MDB/js/jquery-2.2.1.min.js') ?>"></script>
    
+   <script type="text/javascript" src="<?php echo base_url('/assets/MDB/js/tether.min.js') ?>"></script>
+
+
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="<?php echo base_url('/assets/MDB/js/bootstrap.min.js') ?>"></script>
+
 
     <!-- Material Design Bootstrap -->
     <script type="text/javascript" src="<?php echo base_url('/assets/MDB/js/mdb.min.js') ?>"></script>
