@@ -1,5 +1,4 @@
 <?php
-
 	/**
 	* 
 	Controller diferente dos demais, pois inicia uma sessao de acesso ao sistema,
@@ -12,7 +11,7 @@
 	tao como sair da sessao.
 	*/
 	
-	class Login extends CI_Controller
+	class Logincontroller extends CI_Controller
 	{	
 		public $data = array();
 
@@ -24,8 +23,8 @@
 		function index() 
 		{
 			$this->data['titulo']="Login";
-			$this->form_validation->set_rules('senha','senha','trim|required|callback_checklogin');
-			$this->form_validation->set_rules('login','login','trim|required');
+			$this->form_validation->set_rules('senha','Senha','trim|required|callback_checklogin');
+			$this->form_validation->set_rules('login','Login','trim|required');
 			
 			if(($this->form_validation->run()) == false)
 			{

@@ -1,5 +1,5 @@
 <?php 
-
+	header('Access-Control-Allow-Origin:*');
 	/**
 	* @author rivail santos
 	* @copyright xo-piema

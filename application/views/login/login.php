@@ -1,12 +1,8 @@
-
 <!DOCTYPE html>
 <html>
-
 <head>
     <title> <?php echo $title;?> </title>
-    
 </head>
-
 <body class="flat-blue login-page">
     <div class="container">
         <div class="login-box">

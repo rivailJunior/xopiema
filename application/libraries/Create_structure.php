@@ -19,7 +19,8 @@ class Create_structure
 
 	public function createController($model)
 	{
-		$fields = $this->db->list_fields($model);
+		$fields = $this->CI->db->list_fields($model);
+		$model = ucfirst($model);
 		$structure = "
 		<?php
 			defined('BASEPATH') OR exit('No direct script access allowed');
@@ -31,7 +32,6 @@ class Create_structure
 
 			class ".$model."controller extends CI_Controller {
 
-				public $data = array();
 				public function __construct(){
 					parent::__construct();
 					//put the permission code here
@@ -43,11 +43,6 @@ class Create_structure
 				* @category function
 				*/
 				public function create() {
-					//all the input post come here
-					//ex: {$model}['field_name'] = $this->input->post('table_field_name');
-					//ex: {$model}['other_field_name'] = $this->input->post('table_field_name'); 
-					//$this->genericmodel->create($model, $modelname);
-					//your code tu return the response
 				}//fim
 
 				/**
@@ -56,8 +51,6 @@ class Create_structure
 				* @category function
 				*/
 				public function read() {
-					//$this->data['list'] = $this->db->get($model);
-					//$this->load->view('put your view name here', $this->data);
 				}//fim
 
 				/**
@@ -65,12 +58,7 @@ class Create_structure
 				* @uses to update a row
 				* @category function
 				*/
-				public function update($id) {
-					//all the input post come here
-					//ex: {$modelname}['field_name'] = $this->input->post('table_field_name');
-					//ex: {$modelname}['other_field_name'] = $this->input->post('table_field_name'); 
-					//$this->genericmodel->update($model, 'table id name', $id, $modelname);
-					//your code tu return the response
+				public function update() {
 				}//fim
 
 				/**
@@ -78,9 +66,7 @@ class Create_structure
 				* @uses to delete a row
 				* @category function
 				*/
-				public function delete($id) {
-					//$this->genericmodel->delete($model, 'table id name', $id);
-					//your code tu return the response
+				public function delete() {
 				}//fim
 
 			}//fim class
@@ -88,24 +74,24 @@ class Create_structure
 		?>
 		";
 
-		if ( ! write_file('../controllers/'.$model.'controller.php', $structure))
+		if ( ! write_file('application/controllers/'.$model.'controller.php', $structure))
 		{
 		        echo 'erro while create controller structure';
 		}
 		else
 		{
-		        echo 'controller created';
+		       echo 1;
 		}
 
 	}//fim function
 
-	public function getView($model)
+	/*public function getView($model)
 	{
-		$fields = $this->db->list_fields($model);
+		$fields = $this->CI->db->list_fields($model);
 		foreach ($fields as $field) {
 			
 		}
-	}//fim function
+	}*///fim function
 
 
 

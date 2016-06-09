@@ -1,4 +1,4 @@
-
+<?php header('Access-Control-Allow-Origin: *'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +40,7 @@
         <!--Content for large and medium screens-->
         <div class="navbar-desktop">
             <!--Navbar Brand-->
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Aqui vem o nosso logo</a>
             <!--Links-->
             <ul class="nav navbar-nav">
                 <li class="nav-item active">
@@ -56,10 +56,15 @@
                     <a class="nav-link" href="#">Sobre nós</a>
                 </li>
             </ul>
-            <!--Search form-->
+            <button type="button" class="btn btn-primary pull-xs-right" data-toggle="modal" 
+            data-target="#modal-subscription">
+			Login
+			</button>
+            <!--Search form
             <form class="form-inline pull-xs-right">
                 <input class="form-control" type="text" placeholder="Search">
             </form>
+            -->
         </div>
 
         <!-- Content for mobile devices-->
@@ -221,13 +226,13 @@
    
    <script type="text/javascript" src="<?php echo base_url('/assets/MDB/js/tether.min.js') ?>"></script>
 
-
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="<?php echo base_url('/assets/MDB/js/bootstrap.min.js') ?>"></script>
 
 
     <!-- Material Design Bootstrap -->
     <script type="text/javascript" src="<?php echo base_url('/assets/MDB/js/mdb.min.js') ?>"></script>
+
  	<script>
         $(".button-collapse").sideNav();
     </script>
@@ -252,3 +257,44 @@
 </body>
 
 </html>
+                                
+<!-- Modal Subscription -->
+<div class="modal fade modal-ext" id="modal-subscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Formulário de login</h4>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <p>Entre com seu login e senha!</p>
+                <br>
+                <div class="md-form">
+                    <i class="fa fa-user prefix"></i>
+                    <input type="email" id="form22" class="form-control">
+                    <label for="form22">Login</label>
+                </div>
+
+                <div class="md-form">
+                    <i class="fa fa-ellipsis-h  prefix"></i>
+                    <input type="password" id="form32" class="form-control">
+                    <label for="form32">Senha</label>
+                </div>
+
+                <div class="text-xs-center">
+                    <button class="btn btn-success" data-dismiss="modal">Logar</button>
+                </div>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>

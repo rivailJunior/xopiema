@@ -1,7 +1,12 @@
-
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="rivailsantos">
+
  <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <!-- Material Design Icons -->
@@ -58,10 +63,9 @@
 				$.ajax({
 					url:"<?php echo site_url('creatingcontroller/createschema')?>",
 					crossDomain:true,
-					dataType:'json',
 					type:"post",
 					data:{
-						"dados": getAttr()
+						"dados": JSON.stringify(getAttr())
 					},
 					success:function (res){
 						if(res == 1){
