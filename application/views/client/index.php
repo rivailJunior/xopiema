@@ -152,43 +152,4 @@
              });
       </script>
                          
-<!-- Modal Subscription -->
-<div class="modal fade modal-ext" id="modal-subscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <!--Content-->
-        <div class="modal-content">
-            <!--Header-->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Formulário de login</h4>
-            </div>
-            <!--Body-->
-            <div class="modal-body">
-                <p>Entre com seu login e senha!</p>
-                <br>
-                <div class="md-form">
-                    <i class="fa fa-user prefix"></i>
-                    <input type="email" id="form22" class="form-control">
-                    <label for="form22">Login</label>
-                </div>
-
-                <div class="md-form">
-                    <i class="fa fa-ellipsis-h  prefix"></i>
-                    <input type="password" id="form32" class="form-control">
-                    <label for="form32">Senha</label>
-                </div>
-
-                <div class="text-xs-center">
-                    <button class="btn btn-success" data-dismiss="modal">Logar</button>
-                </div>
-            </div>
-            <!--Footer-->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-            </div>
-        </div>
-        <!--/.Content-->
-    </div>
-</div>
+	
