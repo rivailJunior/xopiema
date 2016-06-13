@@ -21,12 +21,29 @@
     <link href="<?php echo base_url('/assets/owncarosel/owl-carousel/owl.carousel.css') ?>" rel="stylesheet" type="text/css" > 
     <link href="<?php echo base_url('/assets/owncarosel/owl-carousel/owl.theme.css') ?>" rel="stylesheet" >
 
-    <script src="<?php echo base_url('/assets/') ?> /owncarosel/owl-carousel/owl.carousel.js"></script>
+    <script type="text/javascript" src="<?php echo base_url('/assets/js/jquery.js') ?> "></script>
+    <script type="text/javascript">
+        function saveWithImg(formId) {
 
-    <script type="text/javascript" src="<?php echo base_url('/assets/js/jquery1.js') ?> "></script>
+            function processJson(data) {
+                //debugger;
+                alert("it worked" + data);
+                console.log("respose: " + data);
+            }
 
-    <script type="text/javascript" src="<?php echo base_url('/assets/js/jquery.form.js') ?> "></script>
-     
+            function showRequest(formData, jqForm, options) {
+                //debugger;
+                var queryString = $.param(formData);
+                console.log('About to submit: \n' + queryString + '\n');
+            }
+
+            $("#"+formId).ajaxSubmit({
+                dataType: 'json',
+                beforeSubmit: showReque
+            });
+        }
+    </script>     
+
     <style type="text/css">
     	.container{
     		padding-top: 80px;

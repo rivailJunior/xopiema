@@ -29,14 +29,14 @@
            <div class="col-md-4">
             <?php  
                 if($user){
-                    echo "<span class='pull-xs-right'>Bem vindo:  ".$user['nome']." ".$user['last_name']. "</span>";
+                    echo "<span class='pull-xs-right white-text'>Bem vindo:  ".$user['nome']." ".$user['last_name']. "</span>";
                 }else{
             ?>
             <button type="button" class="btn  btn-default-outline waves-effect white-text pull-xs-right" data-toggle="modal" 
             data-target="#modal-subscription">
             Login
             </button>
-             <a href="<?php echo site_url('usuario/index')?>"  
+             <a href="<?php echo site_url('usuariocontroller/index')?>"  
              class="btn btn-default-outline waves-effect white-text pull-xs-right" >
             Cadastrar-se
             </a>

@@ -1,4 +1,3 @@
-<script src="<?php echo base_url('/assets/') ?> /owncarosel/owl-carousel/owl.carousel.js"></script>
     
 <div class="row">
 	<div class="container">

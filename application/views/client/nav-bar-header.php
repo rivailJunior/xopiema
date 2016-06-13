@@ -11,6 +11,7 @@
                     },
                     success:function (res){
                         if(res == true) {
+                            $("#modal-subscription").modal('hide');
                             var link = "<?php echo site_url('logincontroller/nav') ?>"
                             $("#nav").load(link);
                         }else{
