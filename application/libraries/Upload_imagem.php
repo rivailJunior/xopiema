@@ -38,10 +38,10 @@ class Upload_imagem
 		
 		$this->CI->upload->initialize($upload_conf);
 			//$files['userfile']
-			foreach($userfile as $key=>$val)// Change $files to new vars and loop them
+			foreach($userfile as $key => $val)// Change $files to new vars and loop them
 			{
 				$i = 1;
-				foreach($val as $v)
+				foreach((array)$val as $v)
 				{
 					$field_name = "file_".$i;
 					$files[$field_name][$key] = $v;

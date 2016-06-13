@@ -41,7 +41,8 @@
 		{
 			$dados = json_decode($this->input->post('dados'), true);
 			parse_str($dados);
-			$result = $this->loginmodel->validateuser($login,$senha);
+			$truncatesenha = trim($senha);
+			$result = $this->loginmodel->validateuser($login, md5($truncatesenha));
 			if($result){
 				$sessao = array();
 				foreach ($result as $row) {

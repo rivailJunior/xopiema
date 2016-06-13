@@ -1,5 +1,5 @@
 <!--Navbar-->
-    <nav id="nav" class="navbar navbar-dark navbar-fixed-top bg-primary">
+    <nav id="nav" class="navbar  teal darken-3 navbar-dark navbar-fixed-top">
         <!--Collapse button-->
         <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="fa fa-bars white-text"></i></a>
         <!--Content for large and medium screens-->
@@ -32,10 +32,14 @@
                     echo "<span class='pull-xs-right'>Bem vindo:  ".$user['nome']." ".$user['last_name']. "</span>";
                 }else{
             ?>
-            <button type="button" class="btn btn-primary pull-xs-right" data-toggle="modal" 
+            <button type="button" class="btn  btn-default-outline waves-effect white-text pull-xs-right" data-toggle="modal" 
             data-target="#modal-subscription">
             Login
             </button>
+             <a href="<?php echo site_url('usuario/index')?>"  
+             class="btn btn-default-outline waves-effect white-text pull-xs-right" >
+            Cadastrar-se
+            </a>
             <?php
                 }
             ?>

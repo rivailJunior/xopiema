@@ -45,11 +45,10 @@
 		* @data - array('todos objetos do formulario');
 		*/
 		public function toUpperForm($data){
-			
 			if(!empty($data)) {
 				$sizeData = sizeof($data);
-				for ($i=0; $i < $sizeData; $i++) { 
-					$data[$i] = strtoupper($data[$i]);
+				for ($i = 0; $i< $sizeData; $i++) { 
+					$data = strtoupper($input);
 				}
 			} else {
 				return null;

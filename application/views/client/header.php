@@ -21,9 +21,11 @@
     <link href="<?php echo base_url('/assets/owncarosel/owl-carousel/owl.carousel.css') ?>" rel="stylesheet" type="text/css" > 
     <link href="<?php echo base_url('/assets/owncarosel/owl-carousel/owl.theme.css') ?>" rel="stylesheet" >
 
-    <script type="text/javascript" src="<?php echo base_url('/assets/js/jquery.js') ?> "></script>
-     <script src="<?php echo base_url('/assets/') ?> /owncarosel/owl-carousel/owl.carousel.js"></script>
-        
+    <script src="<?php echo base_url('/assets/') ?> /owncarosel/owl-carousel/owl.carousel.js"></script>
+
+    <script type="text/javascript" src="<?php echo base_url('/assets/js/jquery1.js') ?> "></script>
+
+    <script type="text/javascript" src="<?php echo base_url('/assets/js/jquery.form.js') ?> "></script>
      
     <style type="text/css">
     	.container{
@@ -41,4 +43,4 @@
          }
     </style>
 </head>
-<body>
+<body class="grey lighten-2">

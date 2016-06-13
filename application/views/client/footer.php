@@ -20,6 +20,7 @@
     <script src="<?php echo base_url('/assets/') ?>/owncarosel/assets/js/google-code-prettify/prettify.js"></script>
     <script src="<?php echo base_url('/assets/') ?>/owncarosel/assets/js/application.js"></script> 
      
+        
  	<script>
         $(".button-collapse").sideNav();
     </script>
