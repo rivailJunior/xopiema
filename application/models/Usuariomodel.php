@@ -31,6 +31,14 @@
 			}
 		}//fim function
 
+		public function findById($id)
+		{
+			
+			return $this->db->get_where("usuario",array('id' => $id))->result();
+
+
+		}
+
 
 	}//fim
 
