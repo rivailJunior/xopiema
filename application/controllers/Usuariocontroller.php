@@ -39,11 +39,12 @@ class Usuariocontroller extends CI_Controller
 	 * @param - array user 
 	 *
 	 */
-	public function verifiUserExist($data)
+	public function verifyUserExist($dados)
 	{
 		$exist = false;
-			if($data){
-				$ret = $this->db->get_where('usuario', array('login' => $data['login']));
+			if(isset($dados)){
+				$login =  $dados['login'];
+				$ret = $this->db->get_where('usuario', array('login' => $login));
 				if($ret->num_rows() > 0){
 					$exist = true;	
 				}
@@ -63,15 +64,15 @@ class Usuariocontroller extends CI_Controller
 		$usuario['first_name'] = $this->input->post('first_name');
 		$usuario['last_name'] = $this->input->post('last_name');
 		$usuario['nick_name'] = $this->input->post('nick_name');
-		$usuario['login'] = $this->input->post('login');
+		$usuario['login'] = trim($this->input->post('login'));
 		$usuario['password_key'] = md5($senha);
 
 		$perfil['short_description'] = $this->input->post('short_description');
 		$perfil['description'] = $this->input->post('description');
 		$perfil['picture'] = $_FILES['userfile']['name'];
 
-		$exist = $this->verifiUserExist($usuario);
-
+		
+		$exist = $this->verifyUserExist($usuario);
 		if($exist == false){
 			$ret = $this->usuariomodel->create($usuario, $perfil);
 			if($ret == 1){
@@ -86,6 +87,22 @@ class Usuariocontroller extends CI_Controller
 		echo $result;
 		
 	}//fim
+
+
+
+
+	public function perfil($id)
+	{
+		$this->data['title'] = "Perfil de usuario";
+		$this->data['usuario'] = $this->usuariomodel->findById($id);
+		$this->load->view('client/header', $this->data);
+		$this->load->view('client/nav-bar-header', $this->data);
+		$this->load->view('client/usuario/perfil', $this->data);
+		$this->load->view('client/nav-bar-footer', $this->data);
+		$this->load->view('client/footer', $this->data);
+		
+
+	}
 
 
 }

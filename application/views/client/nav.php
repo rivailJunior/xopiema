@@ -29,7 +29,7 @@
            <div class="col-md-4">
             <?php  
                 if($user){
-                    echo "<span class='pull-xs-right white-text'>Bem vindo:  ".$user['nome']." ".$user['last_name']. "</span>";
+                    echo "<span class='pull-xs-right white-text'>Bem vindo: <a href=".site_url('usuariocontroller/perfil/'.$user['id'])."> ".$user['nome']." ".$user['last_name']. "</span>";
                 }else{
             ?>
             <button type="button" class="btn  btn-default-outline waves-effect white-text pull-xs-right" data-toggle="modal" 
