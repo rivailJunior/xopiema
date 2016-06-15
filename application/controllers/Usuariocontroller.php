@@ -90,7 +90,10 @@ class Usuariocontroller extends CI_Controller
 
 
 
-
+	/**
+	* @uses to open the user perfil
+	* @author emerson maranhao
+	*/
 	public function perfil($id)
 	{
 		$this->data['title'] = "Perfil de usuario";
@@ -100,9 +103,19 @@ class Usuariocontroller extends CI_Controller
 		$this->load->view('client/usuario/perfil', $this->data);
 		$this->load->view('client/nav-bar-footer', $this->data);
 		$this->load->view('client/footer', $this->data);
-		
+	}//fim function
+	 
 
-	}
+
+	 // this is used only as a example how to use the send email lib
+	 /*public function exemplo_Send_Email()
+	 {
+	 	$this->load->library('send_email');
+	 	$email = "rivail.rj@gmail.com";
+	 	$data['subject'] = "testando classe de email";
+	 	$data['message'] = "testando lib de email dinamic";
+	 	echo $this->send_email->sendEmail($email, $data);
+	 }*///fim
 
 
 }
