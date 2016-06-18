@@ -52,7 +52,7 @@
 				</div>
 				<!--/ col-md-2-->
 			</div>
-
+			<!-- sessao de eventos -->
 			<div class="row">
 				<h4 class="m-t-3 m-l-1">Eventos <small class="text-muted">Escolha uma categoria</small></h4>	
 				<hr>	
@@ -84,7 +84,8 @@
 								        <h4 class="card-title"> <?php echo $categoria[$i];?> </h4>
 								        <!--Text-->
 								        
-								        <a href="#" class="btn btn-primary">Button</a>
+								        <a href="<?php echo site_url('eventocontroller/index');?>" 
+								        class="btn btn-primary">Button</a>
 								    </div>
 								    <!--/.Card content-->
 
@@ -97,7 +98,8 @@
 						?>
 				</div>
 			</div>	
-				
+			
+			<!-- sessao de noticias-->
 			<div class="row">
 				<h4 class="m-t-3 m-l-1">Noticias</h4>	
 			    <hr>
