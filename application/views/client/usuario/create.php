@@ -32,6 +32,9 @@
 			success:function (res){
 				if(res == true){
 					toastr.success('Salvo com sucesso');
+					setTimeout(function () {
+                                                 window.location.reload()
+                                        }, 3000);
 				}else{
 					toastr.info('Erro ao tentar salvar usuario, verifique os dados e tente novamente');
 				}
@@ -159,7 +162,7 @@
 					var remove = "<a  href='#' class='btn btn-default-outline'>X</a>"
 					$("#avatar-2").fileinput({
 						overwriteInitial: true,
-						maxFileSize: 1500,
+						maxFileSize: 5000,
 						showClose: false,
 						showCaption: false,
 						showBrowse: false,
@@ -171,6 +174,6 @@
 	     msgErrorClass: 'alert alert-block alert-danger',
 	     defaultPreviewContent: '<img src="<?php echo base_url('assets/bootstrap-input/img/avatar.jpg') ?>" alt="Seu avatar" style="width:160px"><h4 class="text-muted">Selecione Foto</h4>',
 	     layoutTemplates: {main2: '{preview} {remove} {browse}'},
-	     allowedFileExtensions: ["jpg", "png"]
+	     allowedFileExtensions: ["jpg", "png","jpeg"]
 	 });
 	</script>

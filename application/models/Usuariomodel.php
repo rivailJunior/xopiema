@@ -18,6 +18,15 @@
 
 			$perfil['id_usuario'] = $idlast;
 			$this->db->insert('perfil',$perfil);
+
+			$validacao['id_usuario'] = $idlast;
+
+			$validacao['hash_code'] = md5($usuario['login']);
+
+			$validacao['status'] = false;
+
+			$this->db->insert('validacao_cadastro',$validacao);
+
 			
 			$this->db->trans_complete();
 
@@ -27,20 +36,28 @@
 			}
 			else
 			{
+				$this->sendEmail($usuario['login']);
 				return 1;
 			}
 		}//fim function
 
 		public function findById($id)
 		{
-			
 			return $this->db->get_where("usuario",array('id' => $id))->result();
+		}
 
 
+		public function sendEmail($userEmail)
+		{
+			$this->load->library('send_email');
+			$email = $userEmail;
+			$data['subject'] = "Email XoPiema";
+			$data['message'] = "Para ativar sua conta acesse esta pagina: ".site_url('usuariocontroller/validacaoConta/'.md5($userEmail));
+			$this->send_email->sendEmail($email, $data);
 		}
 
 
 	}//fim
 
 
- ?>
+	?>

@@ -78,6 +78,7 @@ class Usuariocontroller extends CI_Controller
 			if($ret == 1){
 				if(isset($_FILES['userfile']['name'])){
 					$this->upload_imagem->uploadimagem($_FILES['userfile'], $_FILES, "assets/img-perfil");
+					//sendEmail();
 				}
 				$result = true;
 			}else{
@@ -104,18 +105,42 @@ class Usuariocontroller extends CI_Controller
 		$this->load->view('client/nav-bar-footer', $this->data);
 		$this->load->view('client/footer', $this->data);
 	}//fim function
+
+
+
+	public function validacaoConta($login){
+		$validacao['status'] = 1;
+
+		$login = substr($login, 0, -8);
+
+		$resul = $this->genericmodel->update("validacao_cadastro", "hash_code",$login, $validacao);
+
+		$this->data['validacao'] = "Sua conta nao foi ativada!";
+		if ($resul == 1) {
+			$this->data['validacao'] = "Sua conta foi ativada com sucesso!";
+		}
+
+		$this->data['title'] = "Validacao de usuario";
+		$this->load->view('client/header', $this->data);
+		$this->load->view('client/nav-bar-header', $this->data);
+		$this->load->view('client/usuario/validacao_conta', $this->data);
+		$this->load->view('client/nav-bar-footer', $this->data);
+		$this->load->view('client/footer', $this->data);
+
+	}
 	 
 
 
 	 // this is used only as a example how to use the send email lib
-	 /*public function exemplo_Send_Email()
+	 /*public function sendEmail()
 	 {
 	 	$this->load->library('send_email');
-	 	$email = "rivail.rj@gmail.com";
+	 	$email = "eduardo@unimedfama.com.br";
 	 	$data['subject'] = "testando classe de email";
 	 	$data['message'] = "testando lib de email dinamic";
 	 	echo $this->send_email->sendEmail($email, $data);
-	 }*///fim
+	 }*/
+	 ///fim
 
 
 }
