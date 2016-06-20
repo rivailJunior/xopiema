@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,12 +17,13 @@
     <link href="<?php echo base_url('/assets/MDB/css/mdb.min.css') ?>" rel="stylesheet">
     <!--own carrosel -->
     <link href="<?php echo base_url('/assets/owncarosel/owl-carousel/owl.transitions.css') ?>" rel="stylesheet">
-     
+    
     <link href="<?php echo base_url('/assets/owncarosel/owl-carousel/owl.carousel.css') ?>" rel="stylesheet" type="text/css" > 
     <link href="<?php echo base_url('/assets/owncarosel/owl-carousel/owl.theme.css') ?>" rel="stylesheet" >
+    <link rel="stylesheet" href="<?php echo base_url('/assets/default_css/style.css') ?>">
 
     <script type="text/javascript" src="<?php echo base_url('/assets/js/jquery.js') ?> "></script>
-    <script type="text/javascript">
+    <!--script type="text/javascript">
         function saveWithImg(formId) {
 
             function processJson(data) {
@@ -43,22 +43,22 @@
                 beforeSubmit: showReque
             });
         }
-    </script>     
+    </script-->     
 
     <style type="text/css">
     	.container{
     		padding-top: 80px;
     	}
-         #owl-demo .item, #owl-demo2 .item
-         {
-            margin: 5px;
-         }
-         #owl-demo .item img, #owl-demo2 .item img
-         {
-            display: block;
-            width: 100%;
-            max-height: 280px;
-         }
-    </style>
+     #owl-demo .item, #owl-demo2 .item
+     {
+        margin: 5px;
+    }
+    #owl-demo .item img, #owl-demo2 .item img
+    {
+        display: block;
+        width: 100%;
+        max-height: 280px;
+    }
+</style>
 </head>
 <body class="grey lighten-2">

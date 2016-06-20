@@ -36,6 +36,17 @@
 			}
 		}*///fim da function
 
+		public function checkuser(){
+			$login = $this->input->post('dados');
+
+			$result = $this->loginmodel->checkuserexist($login);
+			//var_dump($result);
+			if ($result) {
+				echo true;
+			}else {
+				echo false;
+			}
+		}
 
 		public function checklogin()
 		{
@@ -109,9 +120,9 @@
 		    function logout_user() 
 		    {
 		    	$this->session->unset_userdata('user_logged');
-		    	//redirect('logincontroller');
+		    	redirect(''.site_url());
 		    }
 		    
 	}//fim da classe
 
-?>
+	?>

@@ -33,8 +33,8 @@
 				if(res == true){
 					toastr.success('Salvo com sucesso');
 					setTimeout(function () {
-                                                 window.location.reload()
-                                        }, 3000);
+						window.location.reload()
+					}, 3000);
 				}else{
 					toastr.info('Erro ao tentar salvar usuario, verifique os dados e tente novamente');
 				}
@@ -81,7 +81,7 @@
 							</div>
 							<div class="col-md-5">
 								<div class="md-form">
-								<i class="fa fa-user prefix"></i>
+									<i class="fa fa-user prefix"></i>
 									<input type="text" class="form-control validate"  name="last_name">
 									<label for="form9" data-error="inválido" data-success="ok">Sobrenome</label>
 								</div>
@@ -90,7 +90,7 @@
 						<div class="row">
 							<div class="col-md-10">		
 								<div class="md-form">
-								<i class="fa fa-user prefix"></i>
+									<i class="fa fa-user prefix"></i>
 									<input type="text" class="form-control validate" required name="nick_name">
 									<label for="form9" data-error="inválido" data-success="ok">Apelido</label>
 								</div>							
@@ -99,14 +99,14 @@
 						<div class="row">
 							<div class="col-md-5">	
 								<div class="md-form">
-								 	<i class="fa fa-envelope prefix"></i>
+									<i class="fa fa-envelope prefix"></i>
 									<input type="email" class="form-control validate" autocomplete="off" required name="login">
 									<label for="form9" data-error="inválido"  data-success="ok">E-mail</label>
 								</div>							
 							</div>
 							<div class="col-md-5">	
 								<div class="md-form">
-								 	<i class="fa fa-lock prefix"></i>
+									<i class="fa fa-lock prefix"></i>
 									<input type="password" class="form-control validate" autocomplete="off"  required name="password_key">
 									<label for="form9" data-error="inválido" data-success="ok">Senha</label>
 								</div>							
@@ -126,7 +126,7 @@
 						<div class="row">
 							<div class="col-md-10">
 								<div class="md-form">
-								<i class="fa fa-file-text prefix"></i>
+									<i class="fa fa-file-text prefix"></i>
 									<textarea name="description" class="md-textarea validate"></textarea>
 									<label for="form9" data-error="inválido" data-success="ok">Descrição</label>
 								</div>
