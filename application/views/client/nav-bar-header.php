@@ -16,8 +16,7 @@
                             $("#senhauser").removeAttr('disabled');
                         }else {
                             $("#senhauser").attr('disabled', 'true');
-                            alert("Usuario nao cadastrado!");
-
+                            toastr.error('Usuario não cadastrado');
                         }
                     },
                     error:function (res){
@@ -43,7 +42,7 @@
                             var link = "<?php echo site_url('logincontroller/nav') ?>"
                             $("#nav").load(link);
                         }else{
-                            alert('usuario nao cadastrado');
+                            toastr.error('Senha incorreta');
                         }
                     },
                     error:function (res){
