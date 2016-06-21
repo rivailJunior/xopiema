@@ -10,9 +10,22 @@
 			}else {
 				if ($("#password1").val() != $("#password2").val()) {
 					toastr.error('As senhas não conferem!');
-				}else {
-					toastr.success('Senha alterada com sucesso!');
-					$("#myModal").modal('hide');
+				}else {			
+					var senha = $("#password1").val();	
+					$.ajax({
+						url:"<?php echo site_url('usuariocontroller/passchange'); ?>",
+						type:"post",
+						data:{
+							"dados": senha
+						},
+						success:function (res){
+							toastr.success(res);
+							$("#myModal").modal('hide');
+				},
+				error:function (res){
+					console.log('error: ', res);
+				}
+			});
 				}
 			}			 
 		})
@@ -108,7 +121,7 @@
 				<!--Body-->
 				<div class="modal-body">
 
-					<form id="formpasschange" accept-charset="utf-8">
+					<form id="formpasschange" action="<?php echo site_url('usuariocontroller/passchange'); ?>" accept-charset="utf-8">
 						<!--p>Altere a sua senha</p-->
 						<br>
 						<div class="md-form">

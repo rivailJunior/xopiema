@@ -46,6 +46,12 @@
 			return $this->db->get_where("usuario",array('id' => $id))->result();
 		}
 
+		public function changepassword($login,$pass){
+			$this->db->set('password_key', $pass);
+			$this->db->where('login', $login);
+			$this->db->update('usuario');
+		}
+
 
 		public function sendEmail($userEmail)
 		{

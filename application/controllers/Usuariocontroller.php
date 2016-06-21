@@ -30,7 +30,7 @@ class Usuariocontroller extends CI_Controller
 		$this->load->view('client/footer', $this->data);
 		
 	}//fim
-	 
+	
 
 	/**
 	 *
@@ -42,13 +42,13 @@ class Usuariocontroller extends CI_Controller
 	public function verifyUserExist($dados)
 	{
 		$exist = false;
-			if(isset($dados)){
-				$login =  $dados['login'];
-				$ret = $this->db->get_where('usuario', array('login' => $login));
-				if($ret->num_rows() > 0){
-					$exist = true;	
-				}
+		if(isset($dados)){
+			$login =  $dados['login'];
+			$ret = $this->db->get_where('usuario', array('login' => $login));
+			if($ret->num_rows() > 0){
+				$exist = true;	
 			}
+		}
 		return $exist;
 	}//fim
 
@@ -128,7 +128,30 @@ class Usuariocontroller extends CI_Controller
 		$this->load->view('client/footer', $this->data);
 
 	}
-	 
+	
+
+	public function passchange(){
+		$senha = $this->input->post('dados');
+		$user = $this->session->userdata('user_logged');
+		$result = $this->usuariomodel->findById($user['id']);
+
+		foreach ($result as $row) {
+			$usuario = array(
+				'login'=> $row->login,
+				);
+		}
+
+		if ($usuario) {
+			$this->usuariomodel->changepassword($usuario['login'],md5($senha));
+			echo "Senha alterada com sucesso!";
+		}
+	}
+
+
+
+
+
+
 
 
 	 // this is used only as a example how to use the send email lib
@@ -143,6 +166,6 @@ class Usuariocontroller extends CI_Controller
 	 ///fim
 
 
-}
+	}
 
- ?>
+	?>
