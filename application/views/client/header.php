@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<?php header('Access-Control-Allow-Origin:*'); ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="cache-control" content="no-cache" />
@@ -18,26 +17,12 @@
     <!--own carrosel -->
     <link href="<?php echo base_url('/assets/owncarosel/owl-carousel/owl.transitions.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('/assets/owncarosel/owl-carousel/owl.carousel.css') ?>" rel="stylesheet" type="text/css" > 
-    <link href="<?php echo base_url('/assets/owncarosel/owl-carousel/owl.theme.css') ?>" rel="stylesheet" >
-    <link rel="stylesheet" href="<?php echo base_url('/assets/default_css/style.css') ?>">
-    <script type="text/javascript" src="<?php echo base_url('/assets/js/jquery.js') ?> "></script>
+    <link href="<?php echo base_url('/assets/owncarosel/owl-carousel/owl.theme.css');?>" rel="stylesheet" >
+    <link rel="stylesheet" href="<?php echo base_url('/assets/default_css/style.css');?>">
+    
+    <script type="text/javascript" src="<?php echo base_url('/assets/js/jquery.js');?> "></script>
     <script type="text/javascript" src="<?php echo base_url('/assets/default_js/utils.js')?>"></script>
 
 </head>
-<body class="grey lighten-3">
 
-    <div id="mdb-preloader" class="flex-center grey lighten-3">
-        <div id="preloader-markup">
-            <div class="preloader-wrapper big active">
-                <div class="spinner-layer spinner-blue">
-                  <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div><div class="gap-patch">
-                <div class="circle"></div>
-            </div><div class="circle-clipper right">
-            <div class="circle"></div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
+<body class="grey lighten-3">

@@ -7,10 +7,10 @@
 		$("#savechange").click(function () {
 			if ($("#password1").val() == "" || $("#password2").val() == "") {
 				toastr.error('Digite todos os campos!');
-			}else {
+			} else {
 				if ($("#password1").val() != $("#password2").val()) {
 					toastr.error('As senhas não conferem!');
-				}else {			
+				} else {			
 					var senha = $("#password1").val();	
 					$.ajax({
 						url:"<?php echo site_url('usuariocontroller/passchange'); ?>",
@@ -28,11 +28,10 @@
 			});
 				}
 			}			 
-		})
+		});
 
 	});
 </script>
-<div class="row">
 	<div class="container">	
 		<div class="card card-block">
 			<h4 class="card-title text-primary">Cadastro de Usuário</h4>
@@ -64,7 +63,6 @@
 
 							<?php 
 							foreach ($usuario as $user) {
-
 								?>
 								<h5>Nome: <small><?php echo $user->first_name;?></small></h5>
 
@@ -76,9 +74,6 @@
 								<?php
 							}
 							?>
-
-
-
 						</div>
 						<!--/.Panel 1-->
 
@@ -104,7 +99,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	
 
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -149,9 +144,4 @@
 	</div>
 	<!-- /.Live preview-->
 
-	<script>
-		$(function () {
-			$('#myTabs a:first').tab('show');
-		})
-	</script>
 
