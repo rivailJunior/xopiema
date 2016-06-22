@@ -10,12 +10,19 @@
 			msgsuccess: 'sua msg de sucesso', msgerror: 'mensagem de erro'
 			}
 */
-function saveAndReload(objeto) {  
+function saveAndReload(objeto) {
+	var loader = $("#loader"); 
 	$("#"+objeto.formularioId).ajaxForm({
+	        uploadProgress: function(event, position, total, percentComplete) {
+	     		var html = "<div class='progress'>"+
+    							"<div class='indeterminate'></div>"+
+							"</div>";
+				loader.html(html)	 
+	        },
 			complete:function (res){
-				console.log("complete:", res);
+				console.log("success");
 			},
-			success:function (res) {
+			success:function (res, status, xhr) {
 				if(res == true){
 	                toastr.options = {
 	                    "closeButton": true,
@@ -25,7 +32,8 @@ function saveAndReload(objeto) {
 	                    "showDuration": "0",
 	                    "hideDuration": "0",
 	                    "onHidden": function (){
-	                    	window.location.reload()
+	                    	//window.location.reload()
+	                    	$("#loader").hide();
 	                    },
 	                    "timeOut": "4000",
 	                    "extendedTimeOut": "0",

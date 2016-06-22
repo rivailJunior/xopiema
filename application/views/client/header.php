@@ -17,48 +17,27 @@
     <link href="<?php echo base_url('/assets/MDB/css/mdb.min.css') ?>" rel="stylesheet">
     <!--own carrosel -->
     <link href="<?php echo base_url('/assets/owncarosel/owl-carousel/owl.transitions.css') ?>" rel="stylesheet">
-    
     <link href="<?php echo base_url('/assets/owncarosel/owl-carousel/owl.carousel.css') ?>" rel="stylesheet" type="text/css" > 
     <link href="<?php echo base_url('/assets/owncarosel/owl-carousel/owl.theme.css') ?>" rel="stylesheet" >
     <link rel="stylesheet" href="<?php echo base_url('/assets/default_css/style.css') ?>">
-
     <script type="text/javascript" src="<?php echo base_url('/assets/js/jquery.js') ?> "></script>
-    <!--script type="text/javascript">
-        function saveWithImg(formId) {
+    <script type="text/javascript" src="<?php echo base_url('/assets/default_js/utils.js')?>"></script>
 
-            function processJson(data) {
-                //debugger;
-                alert("it worked" + data);
-                console.log("respose: " + data);
-            }
-
-            function showRequest(formData, jqForm, options) {
-                //debugger;
-                var queryString = $.param(formData);
-                console.log('About to submit: \n' + queryString + '\n');
-            }
-
-            $("#"+formId).ajaxSubmit({
-                dataType: 'json',
-                beforeSubmit: showReque
-            });
-        }
-    </script-->     
-
-    <style type="text/css">
-    	.container{
-    		padding-top: 80px;
-    	}
-     #owl-demo .item, #owl-demo2 .item
-     {
-        margin: 5px;
-    }
-    #owl-demo .item img, #owl-demo2 .item img
-    {
-        display: block;
-        width: 100%;
-        max-height: 280px;
-    }
-</style>
 </head>
 <body class="grey lighten-2">
+
+    <div id="mdb-preloader" class="flex-center teal darken-3">
+    <div id="preloader-markup">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+            <div class="circle"></div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
