@@ -24,12 +24,12 @@
     <script type="text/javascript" src="<?php echo base_url('/assets/default_js/utils.js')?>"></script>
 
 </head>
-<body class="grey lighten-2">
+<body class="grey lighten-3">
 
-    <div id="mdb-preloader" class="flex-center teal darken-3">
-    <div id="preloader-markup">
+    <div id="mdb-preloader" class="flex-center grey lighten-3">
+        <div id="preloader-markup">
             <div class="preloader-wrapper big active">
-                <div class="spinner-layer spinner-blue-only">
+                <div class="spinner-layer spinner-blue">
                   <div class="circle-clipper left">
                     <div class="circle"></div>
                 </div><div class="gap-patch">

@@ -2,6 +2,11 @@
 * @author rivail santos 
 */
 
+function resetForm(formulario) {
+	$("#"+formulario)[0].reset();
+}
+
+
 /**
 * send a request to sabe object
 * params - 
@@ -14,6 +19,7 @@ function saveAndReload(objeto) {
 	var loader = $("#loader"); 
 	$("#"+objeto.formularioId).ajaxForm({
 	        uploadProgress: function(event, position, total, percentComplete) {
+				$("#"+objeto.formularioId+" button").prop("disabled", true);
 	     		var html = "<div class='progress'>"+
     							"<div class='indeterminate'></div>"+
 							"</div>";
@@ -32,8 +38,9 @@ function saveAndReload(objeto) {
 	                    "showDuration": "0",
 	                    "hideDuration": "0",
 	                    "onHidden": function (){
-	                    	//window.location.reload()
-	                    	$("#loader").hide();
+	                    	window.location.reload()
+	                    	//$("#"+objeto.formularioId+" button").prop("disabled", false);
+	                    	//$("#loader").hide();
 	                    },
 	                    "timeOut": "4000",
 	                    "extendedTimeOut": "0",
@@ -43,8 +50,10 @@ function saveAndReload(objeto) {
 	                    "hideMethod": "fadeOut"
 	                };
 					toastr.success(objeto.msgsuccess);
+					//resetForm(objeto.formularioId);
 				} else {
 					toastr.info(objeto.msgerror);
+					$("#"+objeto.formularioId+" button").prop("disabled", false);
 				}
 			}
 	});

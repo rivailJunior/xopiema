@@ -113,9 +113,7 @@
 		</div>
 	</div>
 
-
-
-				<script>
+	<script>
 					var remove = "<a  href='#' class='btn btn-default-outline'>X</a>"
 					$("#avatar-2").fileinput({
 						overwriteInitial: true,
@@ -126,8 +124,6 @@
 						browseOnZoneClick: true,
 						removeLabel: '',
 						removeIcon: '<i class="fa fa-trash"></i>',
-	    //removeTitle: 'Cancelar',
-	     //elErrorContainer: '#kv-avatar-errors-2',
 	     msgErrorClass: 'alert alert-block alert-danger',
 	     defaultPreviewContent: '<img src="<?php echo base_url('assets/bootstrap-input/img/avatar.jpg') ?>" alt="Seu avatar" style="width:160px"><h4 class="text-muted">Selecione Foto</h4>',
 	     layoutTemplates: {main2: '{preview} {remove} {browse}'},
