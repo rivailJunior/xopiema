@@ -16,36 +16,34 @@
                 <a class="nav-link" href="/xopiema/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/xopiema/index.php/noticiacontroller">Noticias</a>
+                <a class="nav-link" href="<?php echo site_url('noticiacontroller/index');?>">Noticias</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/xopiema/index.php/eventocontroller">Eventos</a>
+                <a class="nav-link" href="<?php echo site_url('eventocontroller/index') ?>">Eventos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/xopiema/">Sobre nós</a>
+                <a class="nav-link" href="#/xopiema/">Sobre nós</a>
             </li>
         </ul>    
     </div>
     <div class="col-md-4">
         <?php  
-        if($user){
-            //echo "<span class='pull-xs-right white-text'>Bem vindo: <a href=".site_url('usuariocontroller/perfil/'.$user['id'])."> ".$user['nome']." ".$user['last_name']. "</span>";
-
-
-            echo '<div class="pull-xs-right white-text"><div class="dropdown">
+        if($user)
+            {?>
+            <div class="pull-xs-right white-text"><div class="dropdown">
             <a id="perfil-dropdown" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                '.$user["nome"].' '.$user["last_name"].'
+                <?php echo $user["nome"]." ".$user["last_name"];?>
             </a>
 
             <div class="dropdown-menu" aria-labelledby="perfil-dropdown">
-                <a class="dropdown-item" href='.site_url("usuariocontroller/perfil/".$user["id"]).'>Perfil</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href='.site_url("logincontroller/logout_user").'>Logout</a>
+                <a class="dropdown-item" href="<?php echo site_url("usuariocontroller/perfil/".$user["id"])?>">Perfil</a>
+                
+                <a class="dropdown-item" href="<?php echo site_url("logincontroller/logout_user")?>">Logout</a>
             </div>
         </div></div>';
 
-
-    }else{
+        <?php
+        }else{
         ?>
         <button type="button" id="btloginnav" class="btn  btn-default-outline waves-effect white-text pull-xs-right" data-toggle="modal" 
         data-target="#modal-subscription">

@@ -73,22 +73,34 @@ class Usuariocontroller extends CI_Controller
 
 		
 		$exist = $this->verifyUserExist($usuario);
+
 		if($exist == false){
 			$ret = $this->usuariomodel->create($usuario, $perfil);
 			if($ret == 1){
 				if(isset($_FILES['userfile']['name'])){
+					echo true;
 					$this->upload_imagem->uploadimagem($_FILES['userfile'], $_FILES, "assets/img-perfil");
-					//sendEmail();
+					$this->sendEmail($usuario['login']);
 				}
-				$result = true;
-			}else{
-				$result = false;
+			} else {
+				echo false;
 			}
 		}
-		echo $result;
-		
 	}//fim
 
+
+
+	/**
+	* envia e-mail de confirmacao de conta para o usuario.
+	*/
+	public function sendEmail($userEmail)
+	{
+			$this->load->library('send_email');
+			$email = $userEmail;
+			$data['subject'] = "Email XoPiema";
+			$data['message'] = "Para ativar sua conta acesse esta pagina: ".site_url('usuariocontroller/validacaoConta/'.md5($userEmail));
+			$this->send_email->sendEmail($email, $data);
+	}
 
 
 	/**

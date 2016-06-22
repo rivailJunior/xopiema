@@ -6,7 +6,8 @@
 <script src="<?php echo base_url('/assets/bootstrap-input/js/fileinput.min.js');?>"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
-
+ 
+<script type="text/javascript" src="<?php echo base_url('/assets/default_js/utils.js')?>"></script> 
 
 <style>
 	.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
@@ -22,27 +23,16 @@
 	}
 </style>
 
-
 <script type="text/javascript">
-	$(document).ready(function (){
-		$("#formsalvar").ajaxForm({
-			complete:function (res){
-				console.log("complete:", res);
-			},
-			success:function (res){
-				if(res == true){
-					toastr.success('Salvo com sucesso');
-					setTimeout(function () {
-						window.location.reload()
-					}, 3000);
-				}else{
-					toastr.info('Erro ao tentar salvar usuario, verifique os dados e tente novamente');
-				}
-				
-			}
-		});
 
-	});
+	$(document).ready(function () {
+		var objeto = {
+			formularioId: "formsalvar",
+			msgsuccess:"Salvo com sucesso! enviamos uma confirmação de conta para seu e-mail, verifque!",
+			msgerror: "Nao foi possivel cadastrar usuario, verifique os dados cadastrados"
+		}
+		saveAndReload(objeto);
+	});//fim doc
 </script>
 <div class="row">
 	<div class="container">	
@@ -56,7 +46,6 @@
 						<div class="row">
 							<div class="col-md-10">
 								<div class="md-form">
-
 									<!-- the avatar markup -->
 									<div id="kv-avatar-errors-2" class="center-block"></div>
 									<div class="kv-avatar center-block" >

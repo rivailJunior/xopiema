@@ -26,7 +26,6 @@
 			$validacao['status'] = false;
 
 			$this->db->insert('validacao_cadastro',$validacao);
-
 			
 			$this->db->trans_complete();
 
@@ -36,7 +35,6 @@
 			}
 			else
 			{
-				$this->sendEmail($usuario['login']);
 				return 1;
 			}
 		}//fim function
@@ -50,16 +48,6 @@
 			$this->db->set('password_key', $pass);
 			$this->db->where('login', $login);
 			$this->db->update('usuario');
-		}
-
-
-		public function sendEmail($userEmail)
-		{
-			$this->load->library('send_email');
-			$email = $userEmail;
-			$data['subject'] = "Email XoPiema";
-			$data['message'] = "Para ativar sua conta acesse esta pagina: ".site_url('usuariocontroller/validacaoConta/'.md5($userEmail));
-			$this->send_email->sendEmail($email, $data);
 		}
 
 
