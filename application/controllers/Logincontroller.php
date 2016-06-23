@@ -73,7 +73,7 @@
 
 		public function nav() {
 			$this->data['user'] = $this->session->userdata('user_logged');
-			print_r($this->data);
+			//print_r($this->data);
 			return $this->load->view('client/nav', $this->data);
 		}//fim function
 		
