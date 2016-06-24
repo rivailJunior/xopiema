@@ -18,6 +18,9 @@
     <script src="<?php echo base_url('/assets/') ?>/owncarosel/assets/js/application.js"></script> 
     
     <script type="text/javascript" src="<?php echo base_url('/assets/js/jquery.form.js') ?> "></script>
+    
+    <script type="text/javascript" src="<?php echo base_url('/assets/js/mask.js')?>"></script>
+      <script type="text/javascript" src="<?php echo base_url('/assets/js/mask-money.js')?>"></script>
 
  	<script>
         $(".button-collapse").sideNav();

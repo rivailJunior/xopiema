@@ -23,6 +23,7 @@
     <script type="text/javascript" src="<?php echo base_url('/assets/js/jquery.js');?> "></script>
     <script type="text/javascript" src="<?php echo base_url('/assets/default_js/utils.js')?>"></script>
 
+
 </head>
 
 <body class="grey lighten-3">
