@@ -6,12 +6,18 @@
 <script type="text/javascript">
 $("#optCidades").prepend("<option value='teste'>teste</option>");
 	$(document).ready(function (){
+		var optionsDate	= {
+		  // Escape any “rule” characters with an exclamation mark (!).
+		  format: 'dd/mm/yy',
+		  formatSubmit: 'yyyy-mm-dd'
+		};
 		 $('.mdb-select').material_select();
 		 $('#selectCity').material_select();
 		 $(".mdb-selectcategoria").material_select();
-		 $('#event_date').pickadate();
+		 $('#event_date').pickadate(optionsDate);
 		 $( "#license" ).addClass( "mdb-select price-select" );
 		 $("#quantity_players").mask("9999");
+		 $("#vacancies").mask("9999");
 		 $("#quantity_visitors").mask("9999");
 		 $("#entry_value").maskMoney({thousands:'.', decimal:','});
 		 $("#inscription_value").maskMoney({thousands:'.', decimal:','});
@@ -91,8 +97,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 					</div>
 					<div class="col-md-5">
 						<div class="md-form">
-							<select class="mdb-select"  name="categoria" multiple>
-								<option value="" disabled selected>Escolha uma ou mais categorias</option>
+							<select class="mdb-select"  name="categoria[]" placeholder="Selecione Categoria" multiple>
+								<OPTION value="" disabled>Selectione Categoria</OPTION>
 								<?php 
 										foreach($categoria->result() as $cat) {
 								 ?>
@@ -115,7 +121,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 			<h4 class="card-title m-b-3"><i class="fa fa-picture-o"></i> Fotos</h4>
 				<div class="row">
 					<div class="col-md-10">
-						<input id="file-input" type="file" name="userfile[]" multiple class="file-loading" >	
+						<input id="file-input" type="file" name="userfile" multiple class="file-loading" >	
 					</div>
 				</div>
 		</div>
@@ -144,9 +150,9 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 
 					<div class="col-md-5">
 						<div class="md-form">
-							<input type="text" id="quantity_players" class="form-control validate" 
+							<input type="text" id="vacancies" class="form-control validate" 
 							placeholder="Ex: 100" 
-							required  name="quantity_players">
+							required  name="vacancies">
 							<label for="form9" data-error="Invalido"  data-success="ok">Total vagas para participantes
 							<small class="text-danger">Vagas ilimitadas, favor desconsiderar campo</small></label>
 						</div>

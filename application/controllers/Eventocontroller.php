@@ -73,36 +73,45 @@
 		public function create()
 		{
 			//objeto evento
-			$evento['short_description'] = trim(strtolower($this->input->post('short_descption')));
-			$evento['description'] = trim(strtolower($this->input->post('descption')));
+			$evento['short_description'] = trim(strtolower($this->input->post('short_description')));
+			$evento['description'] = trim(strtolower($this->input->post('description')));
 			$evento['event_date'] = $this->input->post('event_date');
 			$evento['created_at'] = date('y-m-d');
 			$evento['id_usuario'] = $this->getUserId();
 
 			//objeto regras
 			$regras['players'] = $this->input->post('players');
+			//total vagas para visitantes
 			$regras['quantity_visitors'] = trim($this->input->post('quantity_visitors'));
-			$regras['quantity_players'] = trim($this->input->post('quantity_players'));
+			
+			if($regras['players'] == "single") {
+				$regras['quantity_players'] = 1;
+			} else {
+				//total vagas para jogadores por equipe
+				$regras['quantity_players'] = trim($this->input->post('quantity_players'));
+			}
+			//vagas disponiveis para equipes ou participantes no evento
+			$regras['vacancies'] = trim($this->input->post('vacancies'));
 			$regras['entry_value'] = trim($this->input->post('entry_value'));
 			$regras['inscription_value'] = trim($this->input->post('inscription_value'));
-			$regras['short_description'] = trim(strtolower($this->input->post('inscription_value')));
+			$regras['short_description'] = trim(strtolower($this->input->post('short_description_rules')));
 
 			//objeto fotos
-			$fotos['picture'] = $_FILES['userfile'];
-
+			$fotos = $_FILES['userfile'];
 			//categoria
-			$categoria['created_at'] = date('y-m-d');
-			$categoria['id_categoria'] = $this->input->post('categoria');
-
+			
+			$categoria = $this->input->post('categoria');
+			
 			//endereco
 			$endereco['id_city'] = $this->input->post('city');
 			$endereco['street'] = trim(strtolower($this->input->post('street')));
 			$endereco['district'] = trim(strtolower($this->input->post('district')));
 
-			$ret = $this->eventomodel->create($evento, $fotos, $endereco, $regras, $cateogira);
-
-			if($ret == 1) {
-				$this->upload_imagem->uploadimagem($_FILES['userfile'], $_FILES, "assets/img-perfil");
+			$ret = $this->eventomodel->create($evento, $fotos, $endereco, $regras, $categoria);
+			
+			if($ret === 1) {
+				echo $ret;
+				$this->upload_imagem->uploadimagem($_FILES['userfile'], $_FILES, "assets/img-evento");
 			}//fim if
 
 
