@@ -26,6 +26,7 @@
 		public function index()
 		{
 			$this->data['title'] = "Eventos";
+			$this->data['eventos'] = $this->eventomodel->getEvento(10, 0);
 			$this->load->view('client/header', $this->data);
 			$this->load->view('client/nav-bar-header', $this->data);
 			$this->load->view('client/evento/index', $this->data);
