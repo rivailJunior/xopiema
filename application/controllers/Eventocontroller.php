@@ -140,7 +140,7 @@
 			$ret = $this->eventomodel->create($evento, $fotos, $endereco, $regras, $categoria);
 			if($ret > 0) {
 				
-				$this->upload_imagem->uploadimagem($fotos, $_FILES, "assets/img-evento", $ret);
+				$this->upload_imagem->uploadimagem($_FILES['userfile'], $_FILES, "assets/img-evento");
 				echo true;
 			}//fim if
 

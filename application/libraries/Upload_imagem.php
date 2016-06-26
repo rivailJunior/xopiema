@@ -51,6 +51,7 @@ class Upload_imagem
         		unset($userfile);// Unset the useless one ;)
         		// main action to upload each file
 				//$files
+				//print_r($files);
 			foreach($files as $field_name => $file)
 			{
 				
