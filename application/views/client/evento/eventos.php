@@ -20,6 +20,7 @@
 
 <div id="pagination">	
 	<?php 
+		$this->load->helper('text');
 		foreach ($eventos->result() as $evento) {
 	 ?>						
 		<!--Card-->
@@ -39,11 +40,11 @@
 		    <!--Card content-->
 		    <div class="card-block">
 		        <!--Title-->
-		        <h4 class="card-title"><?php echo $evento->short_description?></h4>
+		        <h4 class="card-title"><?php echo word_limiter($evento->short_description, 8); ?></h4>
 		        <hr>
 		        <!--Text-->
 		        <p class="card-text">
-		        	<?php echo $evento->id_evento." - ". $evento->description;?>
+		        	<?php echo  word_limiter($evento->description, 20);?>
 		        </p>
 		    </div>
 		    <!--/.Card content-->

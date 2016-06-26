@@ -9,6 +9,7 @@
 
 		public function create($evento, $fotos, $endereco, $regras, $categoria)
 		{
+			$this->load->helper('string');
 			$this->db->trans_begin();	
 
 			//insere evento
@@ -45,7 +46,7 @@
 			if($this->db->trans_status() != FALSE)
 			{
 				$this->db->trans_commit();
-				return 1;
+				return $idlastEvento;
 			}	
 			else
 			{
@@ -79,7 +80,7 @@
 			inner join regras_evento re on re.id_evento = e.id
 			inner join cidade c on c.id = ed.id_city
 			inner join estado est on est.id = c.estado
-			where ed.conection_table = 'evento' order by e.id desc";
+			where ed.conection_table = 'evento' group by e.id order by e.id desc";
 			
 			if($limit != null) {
 				$sql .=" limit  ".$limit."";

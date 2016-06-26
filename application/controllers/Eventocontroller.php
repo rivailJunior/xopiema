@@ -11,6 +11,7 @@
 		{
 			parent::__construct();
 			$this->load->model('eventomodel');
+			$this->load->library('upload_imagem');
 			$this->load->library('pagination');
 
 		}
@@ -44,7 +45,7 @@
 			$offset = $this->uri->segment(3); 
 		
 			$config['total_rows'] = $this->eventomodel->getEvento(null, null)->num_rows();
-			$config['per_page'] = 10;
+			$config['per_page'] = 1;
 			$config['num_links'] = 0;	
 			$config['full_tag_open'] = "<ul class='list-group pagination'>";
 			$config['full_tag_close']= "</ul>";
@@ -137,10 +138,10 @@
 			$endereco['district'] = trim(strtolower($this->input->post('district')));
 
 			$ret = $this->eventomodel->create($evento, $fotos, $endereco, $regras, $categoria);
-			
-			if($ret === 1) {
-				echo $ret;
-				$this->upload_imagem->uploadimagem($_FILES['userfile'], $_FILES, "assets/img-evento");
+			if($ret > 0) {
+				
+				$this->upload_imagem->uploadimagem($fotos, $_FILES, "assets/img-evento", $ret);
+				echo true;
 			}//fim if
 
 

@@ -121,7 +121,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 			<h4 class="card-title m-b-3"><i class="fa fa-picture-o"></i> Fotos</h4>
 				<div class="row">
 					<div class="col-md-10">
-						<input id="file-input" type="file" name="userfile" multiple class="file-loading" >	
+						<input id="file-input" type="file" name="userfile[]" multiple="multiple" class="file-loading" >	
 					</div>
 				</div>
 		</div>

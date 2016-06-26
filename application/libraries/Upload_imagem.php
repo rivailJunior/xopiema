@@ -2,15 +2,13 @@
 <?php if(!defined("BASEPATH")){ exit("No direct script access allowed"); }
 
 /**
-* @author rivail santos
-* @category library
-* @uses to permits upload multiples files in na input instance
+* 
 */
 class Upload_imagem
 {
 
 	public $CI;
-	
+
 	// We'll use a constructor, as you can't directly call a function
 	// from a property definition.
 	function __construct()
@@ -20,11 +18,12 @@ class Upload_imagem
 		$this->CI->load->helper('url');
 		$this->CI->load->library("image_lib");
 		$this->CI->load->library("upload");
+		$this->CI->load->helper('string');
 		//$CI->config->item('base_url');
 	}
 
 
-	function uploadimagem($userfile, $files, $pastadestino)
+	function uploadimagem($userfile, $_FILES, $pastadestino)
 	{
 		// Put each errors and upload data to an array
 		$error = array();
@@ -33,18 +32,17 @@ class Upload_imagem
 		$upload_conf = array(
 			'upload_path'   => realpath($pastadestino),
 			'allowed_types' => 'gif|jpg|png',
-			'overwrite'=>TRUE
-			);
+			'overwrite'=>TRUE);
 		
 		$this->CI->upload->initialize($upload_conf);
-			//$files['userfile']
-			foreach($userfile as $key => $val)// Change $files to new vars and loop them
+			//$_FILES['userfile']
+			foreach($userfile as $key=>$val)// Change $_FILES to new vars and loop them
 			{
 				$i = 1;
-				foreach((array)$val as $v)
+				foreach($val as $v)
 				{
 					$field_name = "file_".$i;
-					$files[$field_name][$key] = $v;
+					$_FILES[$field_name][$key] = $v;
 					$i++;  
 
 				}
@@ -52,8 +50,8 @@ class Upload_imagem
 
         		unset($userfile);// Unset the useless one ;)
         		// main action to upload each file
-				//$files
-			foreach($files as $field_name => $file)
+				//$_FILES
+			foreach($_FILES as $field_name => $file)
 			{
 				
 				if ($this->CI->upload->do_upload($field_name))
@@ -100,6 +98,9 @@ class Upload_imagem
 			
 }//fim do uploadimg
 
+	
+		
+	
 
 }//fim da class
 
