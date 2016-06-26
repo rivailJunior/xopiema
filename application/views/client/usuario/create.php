@@ -13,7 +13,7 @@
 		saveAndReload(objeto);
 	});//fim doc
 </script>
-<div class="container">
+<div class="container m-t-3">
 	<form id="formsalvar" autocomplete="off" action="<?php echo site_url('usuariocontroller/create'); ?>"  method="POST" enctype="multipart/form-data">
 	<div class="card card-block">
 		<h4 class="card-title m-b-2">Foto Perfil</h4>

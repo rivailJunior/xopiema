@@ -57,9 +57,10 @@
 		/**
 		* retornar todos os eventos sem filtro e em ordem decrescentes
 		*/
-		public function getEvento($limit, $offset)
+		public function getEvento($limit = null, $offset = null)
 		{
 			$sql = "select 
+			e.id as id_evento,
 			e.description as description,
 			date_format(e.event_date, '%d-%m-%Y') as event_date,
 			e.short_description as short_description,
@@ -78,8 +79,15 @@
 			inner join regras_evento re on re.id_evento = e.id
 			inner join cidade c on c.id = ed.id_city
 			inner join estado est on est.id = c.estado
-			where ed.conection_table = 'evento' order by e.id desc
-			limit  ".$limit." offset  ".$offset;
+			where ed.conection_table = 'evento' order by e.id desc";
+			
+			if($limit != null) {
+				$sql .=" limit  ".$limit."";
+				if(isset($offset)){
+					$sql .= " offset ".$offset;
+				}
+			};
+			
 			return $this->db->query($sql);
 		}// fim function
 	}//fim class

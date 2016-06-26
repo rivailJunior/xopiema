@@ -32,7 +32,7 @@
 
 	});
 </script>
-	<div class="container">	
+	<div class="container m-t-3">	
 		<div class="card card-block">
 			<h4 class="card-title text-primary">Cadastro de Usuário</h4>
 			<hr>

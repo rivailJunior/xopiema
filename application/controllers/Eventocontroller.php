@@ -11,6 +11,8 @@
 		{
 			parent::__construct();
 			$this->load->model('eventomodel');
+			$this->load->library('pagination');
+
 		}
 		public $data = array();
 		
@@ -34,9 +36,35 @@
 			$this->load->view('client/footer', $this->data);
 		}//fim da function
 
+
+
+		public function pagination()
+		{
+			$config['base_url'] = site_url('eventocontroller/pagination/');
+			$offset = $this->uri->segment(3); 
+		
+			$config['total_rows'] = $this->eventomodel->getEvento(null, null)->num_rows();
+			$config['per_page'] = 10;
+			$config['num_links'] = 0;	
+			$config['full_tag_open'] = "<ul class='list-group pagination'>";
+			$config['full_tag_close']= "</ul>";
+			$config['next_tag_open'] = "<li class='list-group-item'>";
+			$config['next_tagl_close'] = "</li>";
+			$config['display_pages'] = FALSE;
+			$config['attributes']['rel'] = FALSE;
+			$config['last_link'] = false;
+			$config['next_link'] = "Mais...";
+			$config['first_link'] = false;
+			$config['prev_link'] = false;
+			
+			$this->pagination->initialize($config);
+			$this->data['pages'] = $this->pagination->create_links();
+			$this->data['eventos'] = $this->eventomodel->getEvento($config['per_page'], $offset);
+			$this->load->view('client/evento/eventos', $this->data);
+		}
+
 		public function descricao()
 		{
-			
 			$this->data['title'] = "Descricao Evento";
 			$this->load->view('client/header', $this->data);
 			$this->load->view('client/nav-bar-header', $this->data);
@@ -44,7 +72,7 @@
 			$this->load->view('client/nav-bar-footer', $this->data);
 			$this->load->view('client/footer', $this->data);
 		}//fim
-		 
+
 		/**
 		* abre o formulario de cadastro do evento
 		* o msm so podera acontecer caso o usuario esteja logado
