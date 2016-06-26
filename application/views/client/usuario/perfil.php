@@ -1,3 +1,25 @@
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/bootstrap-input/css/fileinput.min.css'); ?>">
+
+<script src="<?php echo base_url('/assets/bootstrap-input/js/plugins/purify.min.js');?>" type="text/javascript"></script>
+
+<script src="<?php echo base_url('/assets/bootstrap-input/js/fileinput.min.js');?>"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
+
+<style>
+	.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
+		margin: 0;
+		padding: 0;
+		border: none;
+		box-shadow: none;
+		text-align: center;
+	}
+	.kv-avatar .file-input {
+		display: table-cell;
+		max-width: 420px;
+	}
+</style>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -21,23 +43,25 @@
 						success:function (res){
 							toastr.success(res);
 							$("#myModal").modal('hide');
-				},
-				error:function (res){
-					console.log('error: ', res);
-				}
-			});
+						},
+						error:function (res){
+							console.log('error: ', res);
+						}
+					});
 				}
 			}			 
 		});
 
 	});
 </script>
-	<div class="container m-t-3">	
-		<div class="card card-block">
-			<h4 class="card-title text-primary">Cadastro de Usuário</h4>
-			<hr>
-			<div class="card-text">
-				<div class="col-md-12">
+<div class="container m-t-3">	
+	<div class="row">
+		<div class="container">	
+			<div class="card card-block">
+				<h4 class="card-title text-primary">Cadastro de Usuário</h4>
+				<hr>
+				<div class="card-text">
+					<!--div class="col-md-12"-->
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs tabs-3" id="myTabs" role="tablist">
 						<li class="nav-item">
@@ -80,8 +104,25 @@
 						<!--Panel 2-->
 						<div class="tab-pane" id="panel2" role="tabpanel">
 							<br>
+							<h4>Imagem do perfil</h4>
+							<hr>
+							<div class="row">
+								<div class="col-md-10">
+									<div class="md-form">
 
-							<p>Content for Panel 2</p>
+										<!-- the avatar markup -->
+										<div id="kv-avatar-errors-2" class="center-block"></div>
+										<div class="kv-avatar center-block" >
+											<input id="avatar-2" name="userfile" type="file" class="file-loading">
+										</div>
+										<!-- include other inputs if needed and include a form submit (save) button -->
+										<!-- your server code `avatar_upload.php` will receive `$_FILES['avatar']` on form submission -->
+
+									</div>
+								</div>
+							</div>
+
+							<!--p>Content for Panel 2</p-->
 
 						</div>
 						<!--/.Panel 2-->
@@ -96,52 +137,72 @@
 						<!--/.Panel 3-->
 
 					</div>
+					<!--/div-->
 				</div>
 			</div>
-		</div>
-	
-
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<!--Content-->
-			<div class="modal-content">
-				<!--Header-->
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">Alteracao de senha</h4>
-				</div>
-				<!--Body-->
-				<div class="modal-body">
-
-					<form id="formpasschange" action="<?php echo site_url('usuariocontroller/passchange'); ?>" accept-charset="utf-8">
-						<!--p>Altere a sua senha</p-->
-						<br>
-						<div class="md-form">
-							<i class="fa fa-ellipsis-h  prefix"></i>
-							<input type="password" id="password1" name="senha" class="form-control">
-							<label for="form22">Senha</label>
-						</div>
-
-						<div class="md-form">
-							<i class="fa fa-ellipsis-h  prefix"></i>
-							<input type="password" id="password2" name="senha" class="form-control">
-							<label for="form32">Re-type</label>
-						</div>
-					</form>
-
-				</div>
-				<!--Footer-->
-				<div class="modal-footer">
-					<button type="button" id="closechange" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-					<button type="button" id="savechange" class="btn btn-primary">Salvar</button>
-				</div>
-			</div>
-			<!--/.Content-->
 		</div>
 	</div>
-	<!-- /.Live preview-->
+</div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<!--Content-->
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Alteracao de senha</h4>
+			</div>
+			<!--Body-->
+			<div class="modal-body">
+
+				<form id="formpasschange" action="<?php echo site_url('usuariocontroller/passchange'); ?>" accept-charset="utf-8">
+					<!--p>Altere a sua senha</p-->
+					<br>
+					<div class="md-form">
+						<i class="fa fa-ellipsis-h  prefix"></i>
+						<input type="password" id="password1" name="senha" class="form-control">
+						<label for="form22">Senha</label>
+					</div>
+
+					<div class="md-form">
+						<i class="fa fa-ellipsis-h  prefix"></i>
+						<input type="password" id="password2" name="senha" class="form-control">
+						<label for="form32">Re-type</label>
+					</div>
+				</form>
+
+			</div>
+			<!--Footer-->
+			<div class="modal-footer">
+				<button type="button" id="closechange" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+				<button type="button" id="savechange" class="btn btn-primary">Salvar</button>
+			</div>
+		</div>
+		<!--/.Content-->
+	</div>
+</div>
+<!-- /.Live preview-->
+
+
+
+<script>
+	var remove = "<a  href='#' class='btn btn-default-outline'>X</a>"
+
+	$("#avatar-2").fileinput({
+		overwriteInitial: true,
+		maxFileSize: 5000,
+		showClose: false,
+		showCaption: false,
+		showBrowse: false,
+		browseOnZoneClick: true,
+		msgErrorClass: 'alert alert-block alert-danger',
+		defaultPreviewContent: '<img src="<?php echo base_url('assets/bootstrap-input/img/avatar.jpg') ?>" alt="Seu avatar" style="width:160px"><h4 class="text-muted">Alterar Foto</h4>',
+		layoutTemplates: {main2: '{preview} {browse}'},
+		allowedFileExtensions: ["jpg", "png","jpeg"]
+	});
+</script>
