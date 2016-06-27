@@ -43,21 +43,24 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 			  	}
 			  });
 		});//fim select
-		  
-		// objeto para envio de formulario
-		var objeto = {
-			formularioId: "create",
-			msgsuccess:"Salvo com sucesso!",
-			msgerror: "Nao foi possivel cadastrar Evento, verifique os dados cadastrados"
-		}
+
+	    //chama o  submit do formulario
+	    var objeto = {
+	        formularioId: "create",
+	        url: "<?php echo site_url('eventocontroller/create')?>",
+	        msgsuccess: "Salvo com sucesso!",
+	        msgerror: "Nao foi possivel cadastrar Evento, verifique os dados cadastrados"
+	    }
 		saveAndReload(objeto); 
 		   
 	});
 </script>
 
 <div class="container m-t-3">
-	<form id="create"  method="POST" autocomplete="off" 
-	enctype="multipart/form-data" action="<?php echo site_url('eventocontroller/create')?>">
+<?php 
+	$attributes = array('id' => 'create');
+	echo  form_open_multipart('eventocontroller/create', $attributes);
+	?>
 		<div class="card card-block">
 			<h4 class="card-title">Cadastro de evento</h4>
 			<div class="card-text">			

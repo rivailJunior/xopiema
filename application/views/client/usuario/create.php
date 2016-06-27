@@ -7,6 +7,7 @@
 	$(document).ready(function () {
 		var objeto = {
 			formularioId: "formsalvar",
+			url: "<?php echo site_url('usuariocontroller/create')?>",
 			msgsuccess:"Salvo com sucesso! enviamos uma confirmação de conta para seu e-mail, verifque!",
 			msgerror: "Nao foi possivel cadastrar usuario, verifique os dados cadastrados"
 		}
@@ -14,7 +15,11 @@
 	});//fim doc
 </script>
 <div class="container m-t-3">
-	<form id="formsalvar" autocomplete="off" action="<?php echo site_url('usuariocontroller/create'); ?>"  method="POST" enctype="multipart/form-data">
+<?php 
+	$attributes = array('id' => 'formsalvar');
+	echo  form_open_multipart('usuariocontroller/create', $attributes);
+	?>
+	
 	<div class="card card-block">
 		<h4 class="card-title m-b-2">Foto Perfil</h4>
 		<div class="card-text">
@@ -23,7 +28,7 @@
 					<!-- the avatar markup -->
 					<div id="kv-avatar-errors-2" class="center-block"></div>
 					<div class="kv-avatar center-block" >
-						<input id="avatar-2" name="userfile" type="file" class="file-loading">
+						<input id="avatar-2" name="userfile[]" type="file" class="file-loading">
 					</div>
 				</div>
 			</div>

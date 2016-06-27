@@ -18,6 +18,7 @@ function resetForm(formulario) {
 function saveAndReload(objeto) {
 	var loader = $("#loader"); 
 	$("#"+objeto.formularioId).ajaxForm({
+			url:objeto.url,
 	        uploadProgress: function(event, position, total, percentComplete) {
 				$("#"+objeto.formularioId+" button").prop("disabled", true);
 	     		var html = "<div class='progress'>"+

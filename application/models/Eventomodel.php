@@ -24,7 +24,10 @@
 			//insere foto
 			$evento_fotos['id_evento'] = $idlastEvento;
 			foreach($fotos['name'] as $index => $value) {
-				$evento_fotos['picture'] = $value;
+				//echo $index."<br>";
+				$type[$index] = explode(".", $value);
+				//print_r($type);
+				$evento_fotos['picture'] = md5($idlastEvento."_".$index).".".$type[$index][1];
 			    $this->db->insert('evento_fotos', $evento_fotos);
 			}
 			

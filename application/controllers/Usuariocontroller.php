@@ -14,7 +14,7 @@ class Usuariocontroller extends CI_Controller
 		parent::__construct();
 		$this->load->model('usuariomodel');
 		$this->load->library('upload_imagem');
-	
+		$this->load->library('fileupload');
 	}
 
 	public $data = array();
@@ -71,17 +71,23 @@ class Usuariocontroller extends CI_Controller
 
 		$perfil['short_description'] = $this->input->post('short_description');
 		$perfil['description'] = $this->input->post('description');
-		$perfil['picture'] = $_FILES['userfile']['name'];
+		
+		//$perfil['picture'] = $_FILES['userfile']['name'];
+		
+		$fotos = $_FILES['userfile'];
 
 		
 		$exist = $this->verifyUserExist($usuario);
-
-		if($exist == false){
-			$ret = $this->usuariomodel->create($usuario, $perfil);
-			if($ret == 1){
-				if(isset($_FILES['userfile']['name'])){
+		$img = null;
+		if($exist == false) {
+			$ret = $this->usuariomodel->create($usuario, $perfil, $fotos);
+			if($ret > 0) {
+				if(isset($fotos)) {
+					$objeto['file'] = $_FILES['userfile'];
+					$objeto['destino'] = './assets/img-perfil';
+					$objeto['rename'] = $ret;
+					$img = $this->fileupload->uploadImagem($objeto);
 					echo true;
-					$this->upload_imagem->uploadimagem($_FILES['userfile'], $_FILES, "assets/img-perfil");
 					$this->sendEmail($usuario['login']);
 				}
 			} else {

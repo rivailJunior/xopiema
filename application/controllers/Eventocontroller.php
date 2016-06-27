@@ -11,7 +11,7 @@
 		{
 			parent::__construct();
 			$this->load->model('eventomodel');
-			$this->load->library('upload_imagem');
+			$this->load->library('fileupload');
 			$this->load->library('pagination');
 
 		}
@@ -43,7 +43,7 @@
 		{
 			$config['base_url'] = site_url('eventocontroller/pagination/');
 			$offset = $this->uri->segment(3); 
-		
+
 			$config['total_rows'] = $this->eventomodel->getEvento(null, null)->num_rows();
 			$config['per_page'] = 1;
 			$config['num_links'] = 0;	
@@ -81,22 +81,22 @@
 		*/
 		public function cadastro()
 		{
-				$usuario = $this->session->userdata('user_logged');
+			$usuario = $this->session->userdata('user_logged');
 				//if(isset($usuario)) {
-				$this->data['estado'] = $this->db->get_where('estado', array('pais' => 1));
-				$this->data['categoria'] = $this->db->get('categoria');
-				$this->data['title'] = "Cadastro Evento";
-				$this->load->view('client/header', $this->data);
-				$this->load->view('client/nav-bar-header', $this->data);
-				$this->load->view('client/evento/cadastro', $this->data);
-				$this->load->view('client/nav-bar-footer', $this->data);
-				$this->load->view('client/footer', $this->data);
+			$this->data['estado'] = $this->db->get_where('estado', array('pais' => 1));
+			$this->data['categoria'] = $this->db->get('categoria');
+			$this->data['title'] = "Cadastro Evento";
+			$this->load->view('client/header', $this->data);
+			$this->load->view('client/nav-bar-header', $this->data);
+			$this->load->view('client/evento/cadastro', $this->data);
+			$this->load->view('client/nav-bar-footer', $this->data);
+			$this->load->view('client/footer', $this->data);
 			/*
 			} else {
 				echo "nao tem ninguem logado";
 			}*/
 		}//fim
-		 
+
 		/**
 		* cadastra o evento na base de dados
 		*/
@@ -128,8 +128,8 @@
 
 			//objeto fotos
 			$fotos = $_FILES['userfile'];
-			//categoria
 			
+			//categoria
 			$categoria = $this->input->post('categoria');
 			
 			//endereco
@@ -138,15 +138,20 @@
 			$endereco['district'] = trim(strtolower($this->input->post('district')));
 
 			$ret = $this->eventomodel->create($evento, $fotos, $endereco, $regras, $categoria);
-			if($ret > 0) {
-				
-				$this->upload_imagem->uploadimagem($_FILES['userfile'], $_FILES, "assets/img-evento");
-				echo true;
+			$response = null;
+			
+			if($ret > 0) {	
+				$objeto['file'] = $_FILES['userfile'];
+				$objeto['destino'] = './assets/img-evento';
+				$objeto['rename'] = $ret;
+				$img = $this->fileupload->uploadImagem($objeto);
+				$response = $img == true ? true : false;
 			}//fim if
 
+			echo $response;
 
 		}//fim function
-		 
+
 		/**
 		* retorna cidades de acordo com estado selecionado	
 		*/
@@ -161,4 +166,4 @@
 
 	}//fim da class
 
- ?>
+	?>
