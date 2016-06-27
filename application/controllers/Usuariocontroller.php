@@ -13,7 +13,6 @@ class Usuariocontroller extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('usuariomodel');
-		$this->load->library('upload_imagem');
 		$this->load->library('fileupload');
 	}
 
