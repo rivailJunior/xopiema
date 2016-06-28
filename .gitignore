@@ -10,6 +10,7 @@ application/logs/*
 
 application/config/database.php
 assets/img-perfil/*
+assets/img-evento/*
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
 ci_session/*
