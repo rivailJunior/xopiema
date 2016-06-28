@@ -28,7 +28,7 @@
 				$type[$index] = explode(".", $value);
 				//print_r($type);
 				$evento_fotos['picture'] = md5($idlastEvento."_".$index).".".$type[$index][1];
-			    $this->db->insert('evento_fotos', $evento_fotos);
+				$this->db->insert('evento_fotos', $evento_fotos);
 			}
 			
 			//insere categoria
@@ -53,7 +53,7 @@
 			}	
 			else
 			{
-				 $this->db->trans_rollback();
+				$this->db->trans_rollback();
 				return 0;
 			}
 		}//fim da function
@@ -63,7 +63,7 @@
 		*/
 		public function getEvento($limit = null, $offset = null)
 		{
-			$sql = "select 
+			/*$sql = "select 
 			e.id as id_evento,
 			e.description as description,
 			date_format(e.event_date, '%d-%m-%Y') as event_date,
@@ -83,7 +83,27 @@
 			inner join regras_evento re on re.id_evento = e.id
 			inner join cidade c on c.id = ed.id_city
 			inner join estado est on est.id = c.estado
-			where ed.conection_table = 'evento' group by e.id order by e.id desc";
+			where ed.conection_table = 'evento' group by e.id order by e.id desc";*/
+
+
+			$sql = "select
+			e.id as id_evento,
+			e.short_description,
+			e.description,
+			date_format(e.event_date,'%d-%m-%Y') as event_date,
+			e.id_usuario,
+			re.players as format,
+			re.quantity_players,
+			re.quantity_visitors,
+			re.entry_value,
+			re.inscription_value,
+			re.short_description,
+			re.vacancies as vagas,
+			(select ft.picture from evento_fotos ft where e.id=ft.id_evento order by id desc limit 1) as foto,
+			c.nome as cidade,
+			est.nome as estado from evento e,regras_evento re,endereco en,cidade c,estado est
+			where e.id=re.id_evento and en.id_conect_table=e.id and en.id_city=c.id and c.estado = est.id order by e.id desc";
+
 			
 			if($limit != null) {
 				$sql .=" limit  ".$limit."";
@@ -97,4 +117,4 @@
 	}//fim class
 
 
- ?>
+	?>
