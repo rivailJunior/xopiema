@@ -37,13 +37,40 @@ CREATE TABLE `categoria` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `categoria`
+-- Table structure for table `categoria_evento`
 --
 
-LOCK TABLES `categoria` WRITE;
-/*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
-/*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `categoria_evento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `categoria_evento` (
+  `id` int(11) NOT NULL auto_increment,
+  `id_evento` int(11) NOT NULL,
+  `id_categoria` int(11) NOT NULL,
+  `created_at` date NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `id_evento` (`id_evento`),
+  KEY `id_categoria` (`id_categoria`),
+  CONSTRAINT `categoria_evento_ibfk_1` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id`),
+  CONSTRAINT `categoria_evento_ibfk_2` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `cidade`
+--
+
+DROP TABLE IF EXISTS `cidade`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cidade` (
+  `id` int(11) NOT NULL auto_increment,
+  `nome` varchar(120) default NULL,
+  `estado` int(5) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `fk_Cidade_estado` (`estado`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `conta_evento`
@@ -72,13 +99,42 @@ CREATE TABLE `conta_evento` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `conta_evento`
+-- Table structure for table `contato_usuario`
 --
 
-LOCK TABLES `conta_evento` WRITE;
-/*!40000 ALTER TABLE `conta_evento` DISABLE KEYS */;
-/*!40000 ALTER TABLE `conta_evento` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `contato_usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `contato_usuario` (
+  `id` int(11) NOT NULL auto_increment,
+  `phone1` varchar(14) NOT NULL,
+  `phone2` varchar(14) default NULL,
+  `phone3` varchar(14) default NULL,
+  `id_usuario` int(11) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `contato_usuario_ibfk_1` (`id_usuario`),
+  CONSTRAINT `contato_usuario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+--
+-- Table structure for table `endereco`
+--
+
+DROP TABLE IF EXISTS `endereco`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `endereco` (
+  `id` int(11) NOT NULL auto_increment,
+  `id_conect_table` int(11) NOT NULL,
+  `conection_table` varchar(50) NOT NULL,
+  `id_city` int(11) NOT NULL,
+  `street` text NOT NULL,
+  `district` text,
+  PRIMARY KEY  (`id`),
+  KEY `id_city` (`id_city`),
+  CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`id_city`) REFERENCES `cidade` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `equipe`
@@ -95,18 +151,29 @@ CREATE TABLE `equipe` (
   `city` varchar(40) default NULL,
   `country` varchar(40) default NULL,
   `quantity_players` int(11) NOT NULL,
-  PRIMARY KEY  (`id`)
+  `id_usuario` int(11) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `id_usuario_idx` (`id_usuario`),
+  CONSTRAINT `id_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `equipe`
+-- Table structure for table `estado`
 --
 
-LOCK TABLES `equipe` WRITE;
-/*!40000 ALTER TABLE `equipe` DISABLE KEYS */;
-/*!40000 ALTER TABLE `equipe` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `estado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `estado` (
+  `id` int(11) NOT NULL auto_increment,
+  `nome` varchar(75) default NULL,
+  `uf` varchar(5) default NULL,
+  `pais` int(7) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `fk_Estado_pais` (`pais`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `evento`
@@ -121,18 +188,12 @@ CREATE TABLE `evento` (
   `description` text,
   `created_at` datetime default NULL,
   `event_date` date NOT NULL,
-  PRIMARY KEY  (`id`)
+  `id_usuario` int(11) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `id_usuario_idx` (`id_usuario`),
+  CONSTRAINT `fk_evento_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `evento`
---
-
-LOCK TABLES `evento` WRITE;
-/*!40000 ALTER TABLE `evento` DISABLE KEYS */;
-/*!40000 ALTER TABLE `evento` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `evento_fotos`
@@ -150,15 +211,6 @@ CREATE TABLE `evento_fotos` (
   CONSTRAINT `evento_fotos_ibfk_1` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `evento_fotos`
---
-
-LOCK TABLES `evento_fotos` WRITE;
-/*!40000 ALTER TABLE `evento_fotos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `evento_fotos` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `inscricao_participante`
@@ -181,15 +233,6 @@ CREATE TABLE `inscricao_participante` (
   CONSTRAINT `inscricao_participante_ibfk_2` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `inscricao_participante`
---
-
-LOCK TABLES `inscricao_participante` WRITE;
-/*!40000 ALTER TABLE `inscricao_participante` DISABLE KEYS */;
-/*!40000 ALTER TABLE `inscricao_participante` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `inscricao_visitante`
@@ -218,13 +261,19 @@ CREATE TABLE `inscricao_visitante` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `inscricao_visitante`
+-- Table structure for table `pais`
 --
 
-LOCK TABLES `inscricao_visitante` WRITE;
-/*!40000 ALTER TABLE `inscricao_visitante` DISABLE KEYS */;
-/*!40000 ALTER TABLE `inscricao_visitante` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `pais`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pais` (
+  `id` int(11) NOT NULL auto_increment,
+  `nome` varchar(60) default NULL,
+  `sigla` varchar(10) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `perfil`
@@ -246,15 +295,6 @@ CREATE TABLE `perfil` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `perfil`
---
-
-LOCK TABLES `perfil` WRITE;
-/*!40000 ALTER TABLE `perfil` DISABLE KEYS */;
-/*!40000 ALTER TABLE `perfil` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `regras_evento`
 --
 
@@ -270,20 +310,12 @@ CREATE TABLE `regras_evento` (
   `inscription_value` double(14,2) NOT NULL,
   `short_description` varchar(140) default NULL,
   `id_evento` int(11) NOT NULL,
+  `vacancies` int(11) default NULL,
   PRIMARY KEY  (`id`),
   KEY `id_evento` (`id_evento`),
   CONSTRAINT `regras_evento_ibfk_1` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `regras_evento`
---
-
-LOCK TABLES `regras_evento` WRITE;
-/*!40000 ALTER TABLE `regras_evento` DISABLE KEYS */;
-/*!40000 ALTER TABLE `regras_evento` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `usuario`
@@ -297,20 +329,30 @@ CREATE TABLE `usuario` (
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) default NULL,
   `nick_name` varchar(30) NOT NULL,
-  `login` varchar(25) NOT NULL,
+  `login` varchar(100) NOT NULL,
   `password_key` varchar(25) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuario`
+-- Table structure for table `validacao_cadastro`
 --
 
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `validacao_cadastro`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `validacao_cadastro` (
+  `id` int(11) NOT NULL auto_increment,
+  `id_usuario` int(11) NOT NULL,
+  `hash_code` varchar(24) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `id_usuario` (`id_usuario`),
+  CONSTRAINT `validacao_cadastro_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -321,4 +363,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-04 17:47:43
+-- Dump completed on 2016-06-26 18:31:26
