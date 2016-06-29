@@ -42,7 +42,8 @@
                             $("#modal-subscription").modal('hide');
                              window.location.reload();
                         }else{
-                            toastr.error('Senha incorreta');
+                            //toastr.error('Senha incorreta');
+                            toastr.error(res);
                         }
                     },
                     error:function (res){
