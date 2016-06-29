@@ -178,12 +178,6 @@ class Usuariocontroller extends CI_Controller
 	}
 
 
-
-
-
-
-
-
 	 // this is used only as a example how to use the send email lib
 	 /*public function sendEmail()
 	 {

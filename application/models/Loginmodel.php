@@ -43,5 +43,20 @@
 
 		}
 
+		function checkvalidation($login){
+
+			$login = md5($login);
+			$login = substr($login, 0, -8);
+
+			$sql = "select * from validacao_cadastro where hash_code = '".$login."' and status = 1";
+
+			$sqlresult = $this->db->query($sql);
+
+			if ($sqlresult->num_rows()==1) {
+				return true;
+			}else {
+				return false;
+			}
+		}
 	}
 	?>

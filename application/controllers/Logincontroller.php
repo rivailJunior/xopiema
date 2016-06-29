@@ -48,26 +48,30 @@
 			}
 		}
 
-		public function checklogin()
-		{
+		public function checklogin(){
 			$dados = json_decode($this->input->post('dados'), true);
 			parse_str($dados);
 			$truncatesenha = trim($senha);
 			$result = $this->loginmodel->validateuser($login, md5($truncatesenha));
 			if($result){
-				$sessao = array();
-				foreach ($result as $row) {
-					$logado = array(
-						'id'=> $row->id,
-						'nome'=> $row->first_name,
-						'last_name'=>$row->last_name,
-						'logged_in'=> TRUE
-						);
-					$this->session->set_userdata('user_logged', $logado);
-					echo true;
+				$result2 = $this->loginmodel->checkvalidation($login);
+				if ($result2) {
+					$sessao = array();
+					foreach ($result as $row) {
+						$logado = array(
+							'id'=> $row->id,
+							'nome'=> $row->first_name,
+							'last_name'=>$row->last_name,
+							'logged_in'=> TRUE
+							);
+						$this->session->set_userdata('user_logged', $logado);
+						echo true;
+					}
+				}else{
+					echo "Por favor valide sua conta,enviamos a confirmacao para o seu email!";
 				}
 			} else {
-				echo false;
+				echo "Senha incorreta";
 			}
 		}//fim function
 
