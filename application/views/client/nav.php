@@ -14,6 +14,10 @@
     }
     .btn-cadastro:hover{
         color:white;
+        }
+    .logo img{
+        float: left;
+        padding: 5px;
     }
 </style>
 <!--Navbar-->
@@ -23,14 +27,17 @@
     <!--Content for large and medium screens-->
     <div class="navbar-desktop">
         <!--Navbar Brand-->
-        <div class="col-md-2">
-            <a class="navbar-brand" href="/xopiema/">Nosso Logo</a>
+        <div class="col-md-4  logo">
+            <a class="navbar-brand" href="/xopiema/"></a> 
+            <img src="<?php echo base_url('/assets/minimun/asset/img/img.png')?>"  height="42" width="42">
+            <img src="<?php echo base_url('/assets/minimun/asset/img/icone_xopiema2.png')?>"  height="42" width="100">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
            <!--Links-->
            <ul class="nav navbar-nav">
             <li class="nav-item active">
                 <a class="nav-link" href="<?php echo site_url('client/index')?>">Home <span class="sr-only">(current)</span></a>
+               
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo site_url('noticiacontroller/index');?>">Noticias</a>
