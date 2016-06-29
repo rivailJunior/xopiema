@@ -1,10 +1,6 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/bootstrap-input/css/fileinput.min.css'); ?>">
-
 <script src="<?php echo base_url('/assets/bootstrap-input/js/plugins/purify.min.js');?>" type="text/javascript"></script>
-
 <script src="<?php echo base_url('/assets/bootstrap-input/js/fileinput.min.js');?>"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
 
 <style>
 	.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
@@ -17,6 +13,9 @@
 	.kv-avatar .file-input {
 		display: table-cell;
 		max-width: 420px;
+	}
+	.btn-default-outline{
+		display: none;
 	}
 </style>
 

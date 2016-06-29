@@ -1,6 +1,7 @@
     <script type="text/javascript">
         $(document).ready(function (){
             $("#senhauser").attr('disabled', 'true');
+    
             $("#loginuser").blur(function() {
                 var login = $(this).val();
                 $.ajax({
@@ -11,9 +12,11 @@
                     },
                     success:function (res){
                         if (res==1) {
-                            $("#senhauser").removeAttr('disabled');
-                        }else {
-                            $("#senhauser").attr('disabled', 'true');
+                            $("#senhauser").removeAttr('disabled', function (){
+                                getElementById('senhauser').focus;
+                            });
+                        } else {
+                            //$("#senhauser").attr('disabled', 'true');
                             toastr.error('Usuario não cadastrado');
                         }
                     },
@@ -37,10 +40,7 @@
                     success:function (res){
                         if(res == true) {
                             $("#modal-subscription").modal('hide');
-                            var link = "<?php echo site_url('logincontroller/nav') ?>"
-                            $("#nav").load(link, function (){
-                                window.location.reload();
-                            });
+                             window.location.reload();
                         }else{
                             toastr.error('Senha incorreta');
                         }
@@ -78,13 +78,13 @@
                     <br>
                     <div class="md-form">
                         <i class="fa fa-user prefix"></i>
-                        <input type="email" id="loginuser" name="login" class="form-control">
+                        <input type="email" id="loginuser" placeholder="Ex: seu_login@gmail.com" name="login" class="form-control">
                         <label for="form22">Login</label>
                     </div>
 
                     <div class="md-form">
                         <i class="fa fa-ellipsis-h  prefix"></i>
-                        <input type="password" id="senhauser" name="senha" class="form-control">
+                        <input type="password" id="senhauser" placeholder="********" name="senha" class="form-control">
                         <label for="form32">Senha</label>
                     </div>
 

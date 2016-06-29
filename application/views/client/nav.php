@@ -1,3 +1,21 @@
+<style type="text/css">
+    .linkRigth{
+        margin-top: .425rem;
+        font-size: 16px;
+        font-weight: 400;
+        
+    }
+    .linkRigth a{
+        color:rgba(255,255,255,.5);
+    }
+    
+    .btn-login:hover{
+        color:white;
+    }
+    .btn-cadastro:hover{
+        color:white;
+    }
+</style>
 <!--Navbar-->
 <nav id="nav" class="navbar  teal darken-3 navbar-dark navbar-fixed-top">
     <!--Collapse button-->
@@ -17,16 +35,37 @@
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo site_url('noticiacontroller/index');?>">Noticias</a>
             </li>
-            <li class="nav-item">
+            <?php
+                if(isset($user)) {
+            ?>
+            <li class="nav-item btn-group">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" 
+                 >Eventos</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="<?php echo site_url('eventocontroller/index') ?>">Ver todos</a>
+                    <a class="dropdown-item" href="#">Meus Evento</a>
+                    <a class="dropdown-item" href="#">Meus Interesses</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="<?php echo site_url('eventocontroller/cadastro')?>">Criar Evento</a>
+                </div>
+            </li>
+            <?php 
+                }
+                else {
+            ?>
+             <li class="nav-item">
                 <a class="nav-link" href="<?php echo site_url('eventocontroller/index') ?>">Eventos</a>
             </li>
+            <?php
+                }
+            ?>
             <li class="nav-item">
                 <a class="nav-link" href="#/xopiema/">Sobre nós</a>
             </li>
         </ul>    
     </div>
     <div class="col-md-4">
-        <?php  if($user) { ?>
+        <?php  if(isset($user)) { ?>
             <div class="pull-xs-right white-text m-r-3">
                 <div class="dropdown">
                     <a id="perfil-dropdown" data-target="#" data-toggle="dropdown" aria-haspopup="true" 
@@ -47,14 +86,13 @@
             </div>
 
             <?php } else { ?>
-                <button type="button" id="btloginnav" 
-                class="btn  btn-default-outline waves-effect white-text pull-xs-right m-r-3" data-toggle="modal" 
-                data-target="#modal-subscription">
-                Login</button>
-                <a href="<?php echo site_url('usuariocontroller/index')?>"  
-                   class="btn btn-default-outline waves-effect white-text pull-xs-right" >
-                   Cadastrar-se
-               </a>
+                 <h5 class="pull-xs-right white-text linkRigth">
+                    <a href="" title="" class="btn-login" data-toggle="modal" 
+                    data-target="#modal-subscription">Login</a>
+                    |
+                    <a class="btn-cadastro"  href="<?php echo site_url('usuariocontroller/index');?>">
+                    Cadastrar-se</a>
+               </h5>
                <?php } ?>
     </div>
     <!-- Content for mobile devices-->
