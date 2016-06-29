@@ -34,19 +34,18 @@
 			</div>
 		</div>
 		<div class="row"></div>
-		<h4 class="card-title m-b-3"> Informações Básicas</h4>
+		<h4 class="card-title m-b-3"><i class="fa fa-user prefix"></i>
+						 Informações Básicas</h4>
 		<div class="card-text">
 			<div class="row">
 				<div class="col-md-5">	
 					<div class="md-form">
-						<i class="fa fa-user prefix"></i>
 						<input type="text" class="form-control validate" required  name="first_name">
 						<label for="form9" data-error="Invalido" data-success="ok">Nome</label>
 					</div>	
 				</div>
 				<div class="col-md-5">
 					<div class="md-form">
-						<i class="fa fa-user prefix"></i>
 						<input type="text" class="form-control validate"  name="last_name">
 						<label for="form9" data-error="inválido" data-success="ok">Sobrenome</label>
 					</div>
@@ -55,7 +54,6 @@
 			<div class="row">
 				<div class="col-md-10">		
 					<div class="md-form">
-						<i class="fa fa-user prefix"></i>
 						<input type="text" class="form-control validate" required name="nick_name">
 						<label for="form9" data-error="inválido" data-success="ok">Apelido</label>
 					</div>							
@@ -64,14 +62,12 @@
 			<div class="row">
 				<div class="col-md-5">	
 					<div class="md-form">
-						<i class="fa fa-envelope prefix"></i>
 						<input type="email" class="form-control validate" autocomplete="off" required name="login">
 						<label for="form9" data-error="inválido"  data-success="ok">E-mail</label>
 					</div>							
 				</div>
 				<div class="col-md-5">	
 					<div class="md-form">
-						<i class="fa fa-lock prefix"></i>
 						<input type="password" class="form-control validate" autocomplete="off"  required name="password_key">
 						<label for="form9" data-error="inválido" data-success="ok">Senha</label>
 					</div>							
@@ -81,12 +77,12 @@
 	</div>
 	<!--/card block-->
 	<div class="card card-block">
-		<h4 class="card-title m-b-3">Informações Perfil</h4>
+		<h4 class="card-title m-b-3"><i class="fa fa-file-text-o prefix"></i>
+							Informações Perfil</h4>
 			<div class="card-text">
 				<div class="row">
 					<div class="col-md-10">
 						<div class="md-form">
-							<i class="fa fa-file-text-o prefix"></i>
 							<textarea name="short_description" required class="md-textarea validate"></textarea>
 							<label for="form9" data-error="inválido" data-success="ok">Descrição curta</label>
 						</div>
@@ -95,7 +91,6 @@
 				<div class="row">
 					<div class="col-md-10">
 						<div class="md-form">
-							<i class="fa fa-file-text prefix"></i>
 							<textarea name="description" class="md-textarea validate"></textarea>
 							<label for="form9" data-error="inválido" data-success="ok">Descrição</label>
 						</div>

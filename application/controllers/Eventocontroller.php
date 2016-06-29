@@ -21,7 +21,6 @@
 		public function getUserId()
 		{
 			$usuario = $this->session->userdata('user_logged');
-			
 			return $usuario['id'];
 		}
 
@@ -81,20 +80,19 @@
 		*/
 		public function cadastro()
 		{
-			$usuario = $this->session->userdata('user_logged');
-				//if(isset($usuario)) {
-			$this->data['estado'] = $this->db->get_where('estado', array('pais' => 1));
-			$this->data['categoria'] = $this->db->get('categoria');
-			$this->data['title'] = "Cadastro Evento";
-			$this->load->view('client/header', $this->data);
-			$this->load->view('client/nav-bar-header', $this->data);
-			$this->load->view('client/evento/cadastro', $this->data);
-			$this->load->view('client/nav-bar-footer', $this->data);
-			$this->load->view('client/footer', $this->data);
-			/*
-			} else {
-				echo "nao tem ninguem logado";
-			}*/
+			//so abrirá se tiver logado
+			if($this->getUserId() > 0 ) {
+				$this->data['estado'] = $this->db->get_where('estado', array('pais' => 1));
+				$this->data['categoria'] = $this->db->get('categoria');
+				$this->data['title'] = "Cadastro Evento";
+				$this->load->view('client/header', $this->data);
+				$this->load->view('client/nav-bar-header', $this->data);
+				$this->load->view('client/evento/cadastro', $this->data);
+				$this->load->view('client/nav-bar-footer', $this->data);
+				$this->load->view('client/footer', $this->data);
+			}else{
+				$this->index();
+			}
 		}//fim
 
 		/**
@@ -102,53 +100,58 @@
 		*/
 		public function create()
 		{
-			//objeto evento
-			$evento['short_description'] = trim(strtolower($this->input->post('short_description')));
-			$evento['description'] = trim(strtolower($this->input->post('description')));
-			$evento['event_date'] = $this->input->post('event_date');
-			$evento['created_at'] = date('y-m-d');
-			$evento['id_usuario'] = $this->getUserId();
+			//so cadastra se tiver logado
+			if($this->getUserId() > 0){
+				//objeto evento
+				$evento['short_description'] = trim(strtolower($this->input->post('short_description')));
+				$evento['description'] = trim(strtolower($this->input->post('description')));
+				$evento['event_date'] = $this->input->post('event_date');
+				$evento['created_at'] = date('y-m-d');
+				$evento['id_usuario'] = $this->getUserId();
 
-			//objeto regras
-			$regras['players'] = $this->input->post('players');
-			//total vagas para visitantes
-			$regras['quantity_visitors'] = trim($this->input->post('quantity_visitors'));
-			
-			if($regras['players'] == "single") {
-				$regras['quantity_players'] = 1;
-			} else {
-				//total vagas para jogadores por equipe
-				$regras['quantity_players'] = trim($this->input->post('quantity_players'));
+				//objeto regras
+				$regras['players'] = $this->input->post('players');
+				//total vagas para visitantes
+				$regras['quantity_visitors'] = trim($this->input->post('quantity_visitors'));
+				
+				if($regras['players'] == "single") {
+					$regras['quantity_players'] = 1;
+				} else {
+					//total vagas para jogadores por equipe
+					$regras['quantity_players'] = trim($this->input->post('quantity_players'));
+				}
+				//vagas disponiveis para equipes ou participantes no evento
+				$regras['vacancies'] = trim($this->input->post('vacancies'));
+				$regras['entry_value'] = trim($this->input->post('entry_value'));
+				$regras['inscription_value'] = trim($this->input->post('inscription_value'));
+				$regras['short_description'] = trim(strtolower($this->input->post('short_description_rules')));
+
+				//objeto fotos
+				$fotos = $_FILES['userfile'];
+				
+				//categoria
+				$categoria = $this->input->post('categoria');
+				
+				//endereco
+				$endereco['id_city'] = $this->input->post('city');
+				$endereco['street'] = trim(strtolower($this->input->post('street')));
+				$endereco['district'] = trim(strtolower($this->input->post('district')));
+
+				$ret = $this->eventomodel->create($evento, $fotos, $endereco, $regras, $categoria);
+				$response = null;
+				
+				if($ret > 0) {	
+					$objeto['file'] = $_FILES['userfile'];
+					$objeto['destino'] = './assets/img-evento';
+					$objeto['rename'] = $ret;
+					$img = $this->fileupload->uploadImagem($objeto);
+					$response = $img == true ? true : false;
+				}//fim if
+
+				echo $response;
+			}else{
+				$this->index();
 			}
-			//vagas disponiveis para equipes ou participantes no evento
-			$regras['vacancies'] = trim($this->input->post('vacancies'));
-			$regras['entry_value'] = trim($this->input->post('entry_value'));
-			$regras['inscription_value'] = trim($this->input->post('inscription_value'));
-			$regras['short_description'] = trim(strtolower($this->input->post('short_description_rules')));
-
-			//objeto fotos
-			$fotos = $_FILES['userfile'];
-			
-			//categoria
-			$categoria = $this->input->post('categoria');
-			
-			//endereco
-			$endereco['id_city'] = $this->input->post('city');
-			$endereco['street'] = trim(strtolower($this->input->post('street')));
-			$endereco['district'] = trim(strtolower($this->input->post('district')));
-
-			$ret = $this->eventomodel->create($evento, $fotos, $endereco, $regras, $categoria);
-			$response = null;
-			
-			if($ret > 0) {	
-				$objeto['file'] = $_FILES['userfile'];
-				$objeto['destino'] = './assets/img-evento';
-				$objeto['rename'] = $ret;
-				$img = $this->fileupload->uploadImagem($objeto);
-				$response = $img == true ? true : false;
-			}//fim if
-
-			echo $response;
 
 		}//fim function
 

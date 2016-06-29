@@ -7,7 +7,6 @@
         <!--Navbar Brand-->
         <div class="col-md-2">
             <a class="navbar-brand" href="/xopiema/">Nosso Logo</a>
-
         </div>
         <div class="col-md-6">
            <!--Links-->
@@ -36,7 +35,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="perfil-dropdown">
                         <a class="dropdown-item" 
-                        href="<?php echo site_url("usuariocontroller/perfiluser/".$user["id"]);?>">
+                        href="<?php echo site_url("usuariocontroller/perfil/".$user["id"]);?>">
                         <i class="fa fa-edit"></i>
                         Perfil</a>
                         <a class="dropdown-item" href="<?php echo site_url("logincontroller/logout_user")?>">

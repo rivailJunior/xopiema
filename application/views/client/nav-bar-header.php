@@ -1,8 +1,6 @@
     <script type="text/javascript">
         $(document).ready(function (){
-
             $("#senhauser").attr('disabled', 'true');
-
             $("#loginuser").blur(function() {
                 var login = $(this).val();
                 $.ajax({
@@ -40,7 +38,9 @@
                         if(res == true) {
                             $("#modal-subscription").modal('hide');
                             var link = "<?php echo site_url('logincontroller/nav') ?>"
-                            $("#nav").load(link);
+                            $("#nav").load(link, function (){
+                                window.location.reload();
+                            });
                         }else{
                             toastr.error('Senha incorreta');
                         }

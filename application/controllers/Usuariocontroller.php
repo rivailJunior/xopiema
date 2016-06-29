@@ -18,18 +18,29 @@ class Usuariocontroller extends CI_Controller
 
 	public $data = array();
 
+
+	//retorna o id do usuario logado
+	public function getUserId()
+	{
+		$usuario = $this->session->userdata('user_logged');
+		return $usuario['id'];
+	}
+
 	/**
 	 * @uses to load the create page
 	 */
 	public function index()
 	{
-		$this->data['title'] = "Cadastro de usuario";
-		$this->load->view('client/header', $this->data);
-		$this->load->view('client/nav-bar-header', $this->data);
-		$this->load->view('client/usuario/create', $this->data);
-		$this->load->view('client/nav-bar-footer', $this->data);
-		$this->load->view('client/footer', $this->data);
-		
+		if($this->getUserId() == 0){
+			$this->data['title'] = "Cadastro de usuario";
+			$this->load->view('client/header', $this->data);
+			$this->load->view('client/nav-bar-header', $this->data);
+			$this->load->view('client/usuario/create', $this->data);
+			$this->load->view('client/nav-bar-footer', $this->data);
+			$this->load->view('client/footer', $this->data);
+		} else {
+			redirect('client/index');
+		}
 	}//fim
 	
 
