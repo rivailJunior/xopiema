@@ -77,7 +77,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-3">
-					<div class="card card-primary text-xs-center z-depth-2">
+					<div class="card card-info text-xs-center z-depth-2">
 					    <div class="card-block">
 					    	<h4 class="card-title white-text">Total vagas</h4>
 					        <p class="white-text"><?php echo $evento->row()->vacancies;?></p>
@@ -85,7 +85,7 @@
 					</div>
 				</div>
 				<div class="col-md-3">
-					<div class="card card-primary text-xs-center z-depth-2">
+					<div class="card card-info text-xs-center z-depth-2">
 					    <div class="card-block">
 					    	<h4 class="card-title white-text">Valor participante</h4>
 					        <p class="white-text"><?php echo "R$: ".$evento->row()->inscription_value;?></p>
@@ -125,7 +125,7 @@
 					</div>
 				</div>
 				<div class="col-md-6">
-					<div class="card card-primary text-xs-center z-depth-2">
+					<div class="card card-info text-xs-center z-depth-2">
 					    <div class="card-block">
 					    	<h4 class="card-title white-text">Por equipe</h4>
 					        <p class="white-text"><?php echo $evento->row()->quantity_players;?></p>
