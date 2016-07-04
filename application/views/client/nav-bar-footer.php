@@ -1,3 +1,9 @@
+<div class="fixed-action-btn smooth-scroll" style="bottom: 30px; right: 50px;">
+    <a href="#nav" class="btn-floating btn-large teal darken-3">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
 <!--Footer-->
 <footer class="page-footer blue center-on-small-only stylish-color white-text">
 

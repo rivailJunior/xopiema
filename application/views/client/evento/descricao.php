@@ -6,11 +6,19 @@
 		width: 100%;
 		max-height: 300px;
 	}
+	.scroll-box {
+position: relative;
+}
+.scrollspy-example {
+position: relative;
+overflow-y: scroll;
+height: 400px; 
+}
 </style>
 <div class="container m-t-1">
 	<!--Descricao-->
 	<div class="card card-block">
-		<h4 class="card-title text-fluid">Sobre o evento</h4>
+		<h4 class="card-title text-fluid"> <i class="fa fa-file-text "></i> Sobre o evento</h4>
 		<h4 class="card-title m-t-2 text-fluid text-muted"><?php echo $evento->row()->short_description;?></h4>
 		<div class="card-text">
 			<div class="row">
@@ -79,7 +87,7 @@
 	<!--/descricao-->
 	<!-- geral-->
 	<div class="card card-block">
-		<h4 class="card-title">Geral</h4>
+		<h4 class="card-title"><i class="fa fa-info-circle"></i> Geral</h4>
 		<div class="card-text m-t-2">
 			<div class="row">	
 				<div class="col-md-10">
@@ -189,7 +197,7 @@
 	<!--/geral-->
 	<!--Endereco-->
 	<div class="card card-block">
-		<h4 class="card-title">Endereço</h4>
+		<h4 class="card-title"><i class="material-icons prefix">place</i> Endereço</h4>
 		<div class="card-text m-t-2">
 			<div class="row">
 				<div class="col-md-6">
@@ -223,4 +231,57 @@
 		</div>
 	</div>
 	<!--/endereco-->
+
+	<!--Mensagens-->
+	<div class="card card-block">
+		<h4 class="card-title"><i class="fa fa-envelope-o"></i> Mensagens</h4>
+		<div class="card-text">
+			<div class="row">
+				<div class="col-md-6 m-t-2">
+
+					<div class="scroll-box">
+						<div class="scrollspy-example" data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+							
+							<?php 
+								for ($i=0; $i < 10 ; $i++) { 
+
+							 ?>
+							 <!--First review-->
+						    <div class="media">
+						        <a class="media-left waves-light">
+						            <img class="img-circle" src="http://mdbootstrap.com/wp-content/uploads/2015/10/team-avatar-1.jpg" alt="Generic placeholder image">
+						        </a>
+						        <div class="media-body">
+						            <h4 class="media-heading">John Doe</h4>
+						        
+						            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate temporibus iure soluta. Quasi mollitia maxime nemo quam accusamus possimus, voluptatum expedita assumenda. Earum sit id ullam eum vel delectus!</p>
+						        </div>
+						    </div>
+
+						   <?php 
+						   		}
+						    ?>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="col-md-6 m-t-2">
+					<div class="md-form">
+						<input type="text" class="form-control" placeholder="Ex: seu_email@gmail.com" name="mensagem">
+						<label for="form7">E-mail alternativo</label>
+					</div>
+					<div class="md-form">
+					    <textarea type="text" id="form7" placeholder="Ex: Esse evento vai ser show!!!" class="md-textarea"></textarea>
+					    <label for="form7">Deixe sua mensagem</label>
+					</div>
+					<div class="md-form">
+						<button type="submit" class="btn btn-success">Enviar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/mensagens-->
 </div>
+
