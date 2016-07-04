@@ -86,7 +86,6 @@ class Usuariocontroller extends CI_Controller
 		
 		$fotos = $_FILES['userfile'];
 
-		
 		$exist = $this->verifyUserExist($usuario);
 		$img = null;
 		if($exist == false) {
@@ -129,12 +128,17 @@ class Usuariocontroller extends CI_Controller
 	{
 		$this->data['title'] = "Perfil de usuario";
 		$this->data['usuario'] = $this->usuariomodel->findById($id);
+		$this->data['perfil'] = $this->usuariomodel->getperfil($id);
 		$this->load->view('client/header', $this->data);
 		$this->load->view('client/nav-bar-header', $this->data);
 		$this->load->view('client/usuario/perfil', $this->data);
 		$this->load->view('client/nav-bar-footer', $this->data);
 		$this->load->view('client/footer', $this->data);
 	}//fim function
+
+	public function getperfil($id){
+
+	}
 
 
 

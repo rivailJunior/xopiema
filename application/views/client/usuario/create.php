@@ -8,7 +8,7 @@
 		var objeto = {
 			formularioId: "formsalvar",
 			url: "<?php echo site_url('usuariocontroller/create')?>",
-			msgsuccess:"Salvo com sucesso! enviamos uma confirmação de conta para seu e-mail, verifque!",
+			msgsuccess:"Salvo com sucesso! enviamos uma confirmação de conta para seu e-mail, verifique!",
 			msgerror: "Nao foi possivel cadastrar usuario, verifique os dados cadastrados"
 		}
 		saveAndReload(objeto);
@@ -112,7 +112,7 @@
 </div>
 <!--/container-->
 <script>
-	var remove = "<a  href='#' class='btn btn-default-outline'>X</a>"
+	//var remove = "<a  href='#' class='btn btn-default-outline'>X</a>"
 	$("#avatar-2").fileinput({
 		overwriteInitial: true,
 		maxFileSize: 5000,

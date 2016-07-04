@@ -2,23 +2,6 @@
 <script src="<?php echo base_url('/assets/bootstrap-input/js/plugins/purify.min.js');?>" type="text/javascript"></script>
 <script src="<?php echo base_url('/assets/bootstrap-input/js/fileinput.min.js');?>"></script>
 
-<style>
-	.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
-		margin: 0;
-		padding: 0;
-		border: none;
-		box-shadow: none;
-		text-align: center;
-	}
-	.kv-avatar .file-input {
-		display: table-cell;
-		max-width: 420px;
-	}
-	.btn-default-outline{
-		display: none;
-	}
-</style>
-
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -62,10 +45,10 @@
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs tabs-3" id="myTabs" role="tablist">
 				<li class="nav-item">
-					<a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">Panel 1</a>
+					<a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">Informacoes</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#panel2" role="tab">Panel 2</a>
+					<a class="nav-link" data-toggle="tab" href="#panel2" role="tab">Foto</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" data-toggle="tab" href="#panel3" role="tab">Panel 3</a>
@@ -74,19 +57,15 @@
 
 			<!-- Tab panels -->
 			<div class="tab-content">
-
 				<!--Panel 1-->
-				<div class="tab-pane" id="panel1" role="tabpanel">
+				<div class="tab-pane fade in active" id="panel1" role="tabpanel">
 					<br>
-
 					<h4>Informações Básicas</h4>
 					<hr>
-
 					<?php 
 					foreach ($usuario as $user) {
 						?>
 						<h5>Nome: <small><?php echo $user->first_name;?></small></h5>
-
 						<h5>Sobrenome: <small><?php echo $user->last_name;?></small></h5>
 						<h5>Apelido: <small><?php echo $user->nick_name;?></small></h5>
 						<h5>Login: <small><?php echo $user->login;?></small></h5>
@@ -99,7 +78,7 @@
 				<!--/.Panel 1-->
 
 				<!--Panel 2-->
-				<div class="tab-pane" id="panel2" role="tabpanel">
+				<div class="tab-pane fade" id="panel2" role="tabpanel">
 					<br>
 					<h4>Imagem do perfil</h4>
 					<hr>
@@ -125,7 +104,7 @@
 				<!--/.Panel 2-->
 
 				<!--Panel 3-->
-				<div class="tab-pane" id="panel3" role="tabpanel">
+				<div class="tab-pane fade" id="panel3" role="tabpanel">
 					<br>
 
 					<p>Content for Panel 3</p>
@@ -186,7 +165,6 @@
 
 
 <script>
-	var remove = "<a  href='#' class='btn btn-default-outline'>X</a>"
 
 	$("#avatar-2").fileinput({
 		overwriteInitial: true,
@@ -195,9 +173,15 @@
 		showCaption: false,
 		showBrowse: false,
 		browseOnZoneClick: true,
+		showUpload: true,
+		removeIcon: '<i class="fa fa-trash" aria-hidden="true"></i>',
+		uploadIcon: '<i class="fa fa-check-circle" aria-hidden="true"></i>',
+		uploadLabel: '',
+		uploadClass: 'btn btn-default-outline',
+		removeLabel: '',
 		msgErrorClass: 'alert alert-block alert-danger',
-		defaultPreviewContent: '<img src="<?php echo base_url('assets/bootstrap-input/img/avatar.jpg') ?>" alt="Seu avatar" style="width:160px"><h4 class="text-muted">Alterar Foto</h4>',
-		layoutTemplates: {main2: '{preview} {browse}'},
+		defaultPreviewContent: '<img src="<?php echo base_url('assets/img-perfil/'.$perfil[0]->picture); ?>" alt="Seu avatar" style="width:160px"><h4 class="text-muted">Alterar Foto</h4>',
+		layoutTemplates: {main2: '{preview} {remove} {upload} {browse}'},
 		allowedFileExtensions: ["jpg", "png","jpeg"]
 	});
 </script>

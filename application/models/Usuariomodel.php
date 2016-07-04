@@ -58,6 +58,11 @@
 		}
 
 
+		public function getperfil($id){
+			return $this->db->get_where("perfil",array('id_usuario' => $id))->result();
+		}
+
+
 	}//fim
 
 
