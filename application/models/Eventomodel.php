@@ -63,7 +63,7 @@
 		*/
 		public function getEvento($limit = null, $offset = null)
 		{
-			/*$sql = "select 
+			$sql = "select 
 			e.id as id_evento,
 			e.description as description,
 			date_format(e.event_date, '%d-%m-%Y') as event_date,
@@ -83,10 +83,10 @@
 			inner join regras_evento re on re.id_evento = e.id
 			inner join cidade c on c.id = ed.id_city
 			inner join estado est on est.id = c.estado
-			where ed.conection_table = 'evento' group by e.id order by e.id desc";*/
+			where ed.conection_table = 'evento' group by e.id order by e.id desc";
 
 
-			$sql = "select
+			/*$sql = "select
 			e.id as id_evento,
 			e.short_description,
 			e.description,
@@ -102,7 +102,7 @@
 			(select ft.picture from evento_fotos ft where e.id=ft.id_evento order by id desc limit 1) as foto,
 			c.nome as cidade,
 			est.nome as estado from evento e,regras_evento re,endereco en,cidade c,estado est
-			where e.id=re.id_evento and en.id_conect_table=e.id and en.id_city=c.id and c.estado = est.id order by e.id desc";
+			where e.id=re.id_evento and en.id_conect_table=e.id and en.id_city=c.id and c.estado = est.id order by e.id desc";*/
 
 			
 			if($limit != null) {
@@ -114,6 +114,18 @@
 			
 			return $this->db->query($sql);
 		}// fim function
+
+
+		public function getEventoDescricao($id, $objeto)
+		{
+			$this->db->select('evento.*, regras_evento.*, regras_evento.short_description as descricao_regras');
+			$this->db->from('evento');
+			foreach ($objeto as $idnex => $value) {
+				$this->db->join($value, $value.'.id_evento = evento.id', 'left');	
+			}
+			$this->db->where('evento.id', $id);
+			return $this->db->get();	
+		}
 	}//fim class
 
 

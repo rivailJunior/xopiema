@@ -20,6 +20,7 @@
         padding: 5px;
     }
 </style>
+
 <!--Navbar-->
 <nav id="nav" class="navbar  teal darken-3 navbar-dark navbar-fixed-top">
     <!--Collapse button-->
@@ -120,3 +121,10 @@
         </ul>
     </div>
 </nav>
+<script>
+    $(".button-collapse").sideNav();
+</script>
+<script type="text/javascript">
+    Waves.attach('.navbar li', ['waves-light']);
+    Waves.init();
+</script>

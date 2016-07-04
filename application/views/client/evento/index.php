@@ -4,7 +4,7 @@
 	});//fim document
 </script>
 <div class="container m-t-3">
-	<div class="col-md-8 col-md-offset-2" id="contentPrincipal">
+	<div class="col-md-6 col-md-offset-3" id="contentPrincipal">
 		
 	</div>
 </div>

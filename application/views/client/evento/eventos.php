@@ -35,7 +35,7 @@
 		    <!--/.Card image-->
 
 		    <!--Button-->
-		    <a class="btn-floating btn-action"><i class="fa fa-chevron-right"></i></a>
+		    <a href="<?php echo site_url('eventocontroller/descricao/'.$evento->id_evento)?>" class="btn-floating btn-action"><i class="fa fa-chevron-right"></i></a>
 
 		    <!--Card content-->
 		    <div class="card-block">

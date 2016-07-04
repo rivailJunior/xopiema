@@ -44,7 +44,7 @@
 			$offset = $this->uri->segment(3); 
 
 			$config['total_rows'] = $this->eventomodel->getEvento(null, null)->num_rows();
-			$config['per_page'] = 1;
+			$config['per_page'] = 10;
 			$config['num_links'] = 0;	
 			$config['full_tag_open'] = "<ul class='list-group pagination'>";
 			$config['full_tag_close']= "</ul>";
@@ -63,14 +63,25 @@
 			$this->load->view('client/evento/eventos', $this->data);
 		}
 
-		public function descricao()
+		public function descricao($id)
 		{
-			$this->data['title'] = "Descricao Evento";
-			$this->load->view('client/header', $this->data);
-			$this->load->view('client/nav-bar-header', $this->data);
-			$this->load->view('client/evento/descricao', $this->data);
-			$this->load->view('client/nav-bar-footer', $this->data);
-			$this->load->view('client/footer', $this->data);
+			if(isset($id)) {
+				//$fields = "evento.short_description, evento.description, evento"
+				$table['table'] = "regras_evento";
+				$this->data['evento'] = $this->eventomodel->getEventoDescricao($id, $table);		
+				if($this->data['evento']->num_rows() > 0){
+					$this->data['title'] = "Descricao Evento";
+					$this->load->view('client/header', $this->data);
+					$this->load->view('client/nav-bar-header', $this->data);
+					$this->load->view('client/evento/descricao', $this->data);
+					$this->load->view('client/nav-bar-footer', $this->data);
+					$this->load->view('client/footer', $this->data);	
+				} else {
+					$this->index();
+				}
+			} else {
+				$this->index();
+			}
 		}//fim
 
 		/**
