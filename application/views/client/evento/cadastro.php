@@ -67,7 +67,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 	});
 </script>
 
-<div class="container m-t-3">
+<div class="container m-t-1">
 <?php 
 	$attributes = array('id' => 'create');
 	echo  form_open_multipart('eventocontroller/create', $attributes);

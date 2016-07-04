@@ -14,7 +14,7 @@
 		saveAndReload(objeto);
 	});//fim doc
 </script>
-<div class="container m-t-3">
+<div class="container m-t-1">
 <?php 
 	$attributes = array('id' => 'formsalvar');
 	echo  form_open_multipart('usuariocontroller/create', $attributes);
