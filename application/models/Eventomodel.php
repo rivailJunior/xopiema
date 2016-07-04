@@ -118,14 +118,33 @@
 
 		public function getEventoDescricao($id, $objeto)
 		{
-			$this->db->select('evento.*, regras_evento.*, regras_evento.short_description as descricao_regras');
+			$this->db->select('evento.*, usuario.*, regras_evento.*, regras_evento.short_description as descricao_regras');
 			$this->db->from('evento');
 			foreach ($objeto as $idnex => $value) {
 				$this->db->join($value, $value.'.id_evento = evento.id', 'left');	
 			}
+			$this->db->join('usuario', 'evento.id_usuario = usuario.id', 'left');
 			$this->db->where('evento.id', $id);
 			return $this->db->get();	
+		}//fim
+		
+		//retorna total de participantes do evento pelo id do evento
+		//params - id do evento
+		public function getTotalInscritos($id)
+		{
+			return $this->db->get_where('inscricao_participante', array('id'=>$id))->num_rows();
 		}
+
+		//retorna o endereco do evento
+		public function getEnderecoEvento($id)
+		{
+			$sql = "select etd.*, c.*, e.*, c.nome as cidade, etd.nome as estado from endereco e
+					inner join cidade c on c.id = e.id_city
+					inner join estado etd on etd.id = c.estado
+					where e.id = ".$id;
+			return $this->db->query($sql);
+		}//fim
+		 
 	}//fim class
 
 

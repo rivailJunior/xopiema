@@ -1,5 +1,9 @@
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/bootstrap-input/css/fileinput.min.css'); ?>">
+<?php 
+	//load the helpers
+	$this->load->helper('string');					
 
+ ?>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/bootstrap-input/css/fileinput.min.css'); ?>">
 <style type="text/css">
 	.btn-default-outline{
 		display: none;
@@ -12,7 +16,11 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 		var optionsDate	= {
 		  // Escape any “rule” characters with an exclamation mark (!).
 		  format: 'dd/mm/yy',
-		  formatSubmit: 'yyyy-mm-dd'
+		  formatSubmit: 'yyyy-mm-dd',
+		  today:"today",
+		  closeOnSelect:true,
+		  closeOnClear:false,
+		  min: "today",
 		};
 		 $('.mdb-select').material_select();
 		 $('#selectCity').material_select();
@@ -73,10 +81,11 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 					<div class="col-md-10">
 						<div class="md-form">
 							<i class="fa fa-file-text-o prefix"></i>
-							<textarea name="short_description" required class="md-textarea validate" 
+							<textarea  name="short_description" required class="md-textarea validate" 
 							placeholder="Faça uma breve observação das regras do evento"
-							length="140"></textarea>
+							length="140" maxlength="140"></textarea>
 							<label for="form9" data-error="Invalido" data-success="ok">Breve descrição</label>
+							
 						</div>
 					</div>
 				</div>
@@ -86,7 +95,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 						<div class="md-form">
 							<i class="fa fa-file-text prefix"></i>
 							<textarea name="description" required class="md-textarea validate" 
-							length="300" placeholder="Faça uma breve observação das regras do evento"></textarea>
+							length="300" maxlength="300" placeholder="Faça uma breve observação das regras do evento"></textarea>
 							<label for="form9" data-error="Invalido" data-success="ok">Descrição detalhada</label>
 						</div>
 					</div>
@@ -107,8 +116,9 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 								<OPTION value="" disabled>Selectione Categoria</OPTION>
 								<?php 
 										foreach($categoria->result() as $cat) {
+											$string = $cat->category_name. "/".$cat->short_descriptino;
 								 ?>
-								 <option value="<?php echo $cat->id;?>"> <?php echo $cat->category_name;?> </option>
+								 <option value="<?php echo $cat->id;?>"> <?php echo trim_slashes($string);?> </option>
 								 <?php
 								 	
 								 }
@@ -127,7 +137,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 			<h4 class="card-title m-b-3"><i class="fa fa-picture-o"></i> Fotos</h4>
 				<div class="row">
 					<div class="col-md-10">
-						<input id="file-input" type="file" name="userfile[]" multiple="multiple" class="file-loading" >	
+						<input id="file-input" required type="file" name="userfile[]" multiple="multiple" class="file-loading" >	
 					</div>
 				</div>
 		</div>
@@ -142,11 +152,12 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 						<div class="md-form">
 							<div class="form-inline">
 								<fieldset class="form-group">
-									<input name="players" type="radio" value="single" class="with-gap" id="radio1">
+									<input name="players" checked="checked" required type="radio" value="single" class="with-gap" 
+									id="radio1">
 									<label for="radio1">Individual</label>
 								</fieldset>
 								<fieldset class="form-group">
-									<input name="players" value="team" type="radio" class="with-gap" id="radio2">
+									<input name="players"  value="team" type="radio" class="with-gap" id="radio2">
 									<label for="radio2">Equipe</label>
 								</fieldset>
 							</div>
@@ -156,9 +167,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 
 					<div class="col-md-5">
 						<div class="md-form">
-							<input type="text" id="vacancies" class="form-control validate" 
-							placeholder="Ex: 100" 
-							required  name="vacancies">
+							<input type="text" id="vacancies" class="form-control" 
+							placeholder="Ex: 100" name="vacancies">
 							<label for="form9" data-error="Invalido"  data-success="ok">Total vagas para participantes
 							<small class="text-danger">Vagas ilimitadas, favor desconsiderar campo</small></label>
 						</div>
@@ -167,7 +177,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 				<div class="row">
 					<div class="col-md-5" id="equipe">
 						<div class="md-form">
-							<input type="text" id="quantity_players" class="form-control validate" 
+							<input type="text" id="quantity_players" class="form-control" 
 							placeholder="Ex: 5" name="quantity_players">
 							<label for="form9" data-error="Invalido"  data-success="ok">
 							Quantidade por equipe <small class="text-danger">Caso especifico para equipe</small></label>
@@ -175,9 +185,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 					</div>
 					<div class="col-md-5">
 						<div class="md-form">	
-							<input type="text" id="entry_value" class="form-control validate" 
-							placeholder="Ex: R$ 50.00" 
-							required  name="entry_value">
+							<input type="text" id="inscription_value" class="form-control" 
+							placeholder="Ex: R$ 50.00" name="inscription_value">
 							<label for="form9" data-error="Invalido" data-success="ok">Valor Inscrição
 							<small class="text-danger">Evento gratuito, favor desconsiderar campo</small></label>
 						</div>
@@ -186,7 +195,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 				<div class="row">
 					<div class="col-md-5">
 						<div class="md-form">
-							<input type="text" id="quantity_visitors" class="form-control validate" 
+							<input type="text" id="quantity_visitors" class="form-control" 
 							placeholder="Ex: 100" 
 							name="quantity_visitors">
 							<label for="form9" data-error="Invalido"  data-success="ok">Total vagas para visitantes
@@ -195,9 +204,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 					</div>
 					<div class="col-md-5">
 						<div class="md-form">
-							<input type="text" id="inscription_value" class="form-control validate" 
-							placeholder="Ex: R$ 10.00" 
-							required  name="inscription_value">
+							<input type="text" id="entry_value" class="form-control" 
+							placeholder="Ex: R$ 10.00"  name="entry_value">
 							<label for="form9" data-error="Invalido" data-success="ok">Valor Inscrição Visitante, 
 							<small class="text-danger">Evento gratuito, favor desconsiderar campo</small></label>
 						</div>
@@ -207,9 +215,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 				<div class="row">
 					<div class="col-md-10">
 						<div class="md-form">
-					
 							<textarea name="short_description_rules" required class="md-textarea validate" 
-							length="140" placeholder="Faça uma breve observação das regras do evento"></textarea>
+							length="140" maxlength="140" placeholder="Faça uma breve observação das regras do evento"></textarea>
 							<label for="form9" data-error="inválido" data-success="ok">Observações</label>
 						</div>
 					</div>
@@ -223,7 +230,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 				<div class="row">
 					<div class="col-md-5">
 						<div class="md-form">
-							<select id="selectEstado" name="estado" class="mdb-select">
+							<select id="selectEstado" required name="estado" class="mdb-select">
 								<option  disabled selected>Selecione Estado</option>
 								<?php 
 									if($estado->num_rows() > 0){
@@ -240,7 +247,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 					</div>
 					<div class="col-md-5">
 						<div class="md-form" id="divCidades">
-							<select class="mdb-selects" name="city" id="selectCity">
+							<select class="mdb-selects" required name="city" id="selectCity">
 								<option id="optCidades" disabled selected>Selecione Cidade</option>
 
 							</select>
@@ -249,13 +256,20 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-10">
+					<div class="col-md-5">
 						<div class="md-form">
-							
 							<input type="text" class="form-control validate" 
 								placeholder="Digite a localização do evento" 
-								required  name="street">
+								required  name="street" length="100" maxlength="100">
 							<label for="form9" data-error="inválido" data-success="ok">Logradouro</label>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<div class="md-form">
+							<input type="text" class="form-control validate" 
+								placeholder="Ex: Ponta negra" 
+								required  name="district" length="100" maxlength="100">
+							<label for="form9" data-error="inválido" data-success="ok">Bairro</label>
 						</div>
 					</div>
 				</div>
@@ -287,7 +301,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 			removeIcon:'<i class="fa fa-trash"></i>',
 			showCancel:false,
 			removeLabel:'Remover',
-			showUpload:true,
+			showUpload:false,
 			browseLabel:"Selecionar",
 			browseClass:"btn btn-primary-outline waves-effect"
 		}

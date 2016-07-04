@@ -13,6 +13,9 @@
 			$this->load->model('eventomodel');
 			$this->load->library('fileupload');
 			$this->load->library('pagination');
+			$this->load->helper('smiley');
+			$this->load->library('table');
+               
 
 		}
 		public $data = array();
@@ -28,6 +31,8 @@
 		public function index()
 		{
 			$this->data['title'] = "Eventos";
+
+			
 			$this->data['eventos'] = $this->eventomodel->getEvento(10, 0);
 			$this->load->view('client/header', $this->data);
 			$this->load->view('client/nav-bar-header', $this->data);
@@ -66,10 +71,11 @@
 		public function descricao($id)
 		{
 			if(isset($id)) {
-				//$fields = "evento.short_description, evento.description, evento"
 				$table['table'] = "regras_evento";
 				$this->data['evento'] = $this->eventomodel->getEventoDescricao($id, $table);		
 				if($this->data['evento']->num_rows() > 0){
+					$this->data['total_inscritos'] = $this->eventomodel->getTotalInscritos($id);
+					$this->data['endereco'] = $this->eventomodel->getEnderecoEvento($id);
 					$this->data['title'] = "Descricao Evento";
 					$this->load->view('client/header', $this->data);
 					$this->load->view('client/nav-bar-header', $this->data);
@@ -91,6 +97,7 @@
 		*/
 		public function cadastro()
 		{
+
 			//so abrirá se tiver logado
 			if($this->getUserId() > 0 ) {
 				$this->data['estado'] = $this->db->get_where('estado', array('pais' => 1));

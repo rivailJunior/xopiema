@@ -1,10 +1,20 @@
-<div class="container m-t-3">
+<?php 
+	$this->load->helper('date');
+ ?>
+<style type="text/css">
+	.carousel-item img{
+		width: 100%;
+		max-height: 300px;
+	}
+</style>
+<div class="container m-t-1">
+	<!--Descricao-->
 	<div class="card card-block">
-		<h4 class="card-title text-fluid">Descricao do Evento</h4>
-		<h4 class="card-title m-t-2 text-fluid">Evento: <?php echo $evento->row()->short_description;?></h4>
+		<h4 class="card-title text-fluid">Sobre o evento</h4>
+		<h4 class="card-title m-t-2 text-fluid text-muted"><?php echo $evento->row()->short_description;?></h4>
 		<div class="card-text">
 			<div class="row">
-				<div class="col-md-6">	
+				<div class="col-md-6 m-t-2">	
 					<!--Carousel Wrapper-->
 					<div id="carousel-example-1" class="carousel slide carousel-fade" data-ride="carousel">
 					    <!--Indicators-->
@@ -24,14 +34,13 @@
 					    <!--/.Indicators-->
 
 					    <!--Slides-->
-					    <div class="carousel-inner" role="listbox">
-					    <?php 
-					    	
+					    <div class="carousel-inner z-depth-1" role="listbox">
+					    <?php 	
 					    	if($fotos->num_rows() > 0){
 					    		foreach ($fotos->result() as $index => $fot) {
 					     ?>
 					        <!--First slide-->
-					        <div class="carousel-item <?php if($index == 0) echo "active"; ?>">
+					        <div class="carousel-item <?php if($index == 0) echo "active"; ?> ">
 					            <img src="<?php echo base_url('/assets/img-evento/'.$fot->picture);?>" 
 					            alt="First slide">
 					        </div>
@@ -57,61 +66,95 @@
 					</div>
 					<!--/.Carousel Wrapper-->
 				</div>
-				<div class="col-md-6">
-					<h4 class="card-title">Sobre o evento </h4>
-					<blockquote class="blockquote"><?php echo $evento->row()->description;?></blockquote>
+				<div class="col-md-6 m-t-2">
+					<h4 class="card-title"> ... </h4>
+					<blockquote class="blockquote text-muted">" <?php echo $evento->row()->description;?> "
+					<footer class="blockquote-footer">
+					<cite title="Source Title"><?php echo $evento->row()->last_name;?></cite></footer>
+					</blockquote>
 				</div>
 			</div>			
 		</div>
 	</div>
+	<!--/descricao-->
+	<!-- geral-->
 	<div class="card card-block">
 		<h4 class="card-title">Geral</h4>
-		<div class="card-text">
+		<div class="card-text m-t-2">
 			<div class="row">	
-				<div class="col-md-12">
-					<blockquote class="blockquote bq-primary">
+				<div class="col-md-10">
+					<blockquote class="blockquote bq-warning">
 			   			<p class="bq-title">Participantes ou visitantes...</p>
-			   			<p><?php echo $evento->row()->descricao_regras;?></p>
+			   			<p class="text-muted"><?php echo $evento->row()->descricao_regras;?></p>
+					</blockquote>
+				</div>
+				<div class="col-md-2">
+					<blockquote class="blockquote bq-warning">
+						<p class="bq-title">Data</p>
+						<p class="text-muted">
+							<?php 
+								$now = $evento->row()->event_date;
+								echo nice_date($now, 'd-m-Y');?>
+						</p>
 					</blockquote>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-3">
-					<div class="card card-info text-xs-center z-depth-2">
+					<div class="card teal darken-1 text-xs-center z-depth-1">
 					    <div class="card-block">
 					    	<h4 class="card-title white-text">Total vagas</h4>
-					        <p class="white-text"><?php echo $evento->row()->vacancies;?></p>
+					        <p class="white-text">
+					        	<?php 
+					        	$vagas = $evento->row()->vacancies; 
+					        	echo  $vagas > 0 ? $vagas : "Ilimitadas";
+					        	?>
+					        </p>
 					    </div>
 					</div>
 				</div>
 				<div class="col-md-3">
-					<div class="card card-info text-xs-center z-depth-2">
+					<div class="card teal darken-1 text-xs-center z-depth-1">
 					    <div class="card-block">
 					    	<h4 class="card-title white-text">Valor participante</h4>
-					        <p class="white-text"><?php echo "R$: ".$evento->row()->inscription_value;?></p>
+					        <p class="white-text">
+					        	<?php 
+					        		$inscricao = $evento->row()->inscription_value;
+					        		echo $inscricao > 0 ? "R$: ".$inscricao : "Evento Gratuito";
+					        	?></p>
 					    </div>
 					</div>
 				</div>
 				<div class="col-md-3">
-					<div class="card card-success text-xs-center z-depth-2">
+					<div class="card teal darken-3 text-xs-center z-depth-1">
 					    <div class="card-block">
 					    	<h4 class="card-title white-text">Valor Visitante</h4>
-					        <p class="white-text"><?php echo "R$: ".$evento->row()->entry_value;?></p>
+					        <p class="white-text">
+					        	<?php 
+					        		$entrada = $evento->row()->entry_value;
+					        		echo $entrada > 0 ? "R$: ".$entrada : "Entrada Gratuita";
+					        	?>	
+					        	</p>
 					    </div>
 					</div>
 				</div>
 				<div class="col-md-3">
-					<div class="card card-success text-xs-center z-depth-2">
+					<div class="card teal darken-3 text-xs-center z-depth-1">
 					    <div class="card-block">
 					    	<h4 class="card-title white-text">Vagas visitantes</h4>
-					        <p class="white-text"><?php echo $evento->row()->quantity_visitors;?></p>
+					        <p class="white-text">
+						        <?php 
+						        	$visitantes = $evento->row()->quantity_visitors;
+						        	echo $visitantes > 0 ? $visitantes : "Ilimitada";
+						        ?>	
+					        </p>
 					    </div>
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
-					<div class="card card-success text-xs-center z-depth-2">
+				<div class="col-md-4">
+					<div class="card  teal darken-3 text-xs-center z-depth-1">
 					    <div class="card-block">
 					    	<h4 class="card-title white-text">Formato parcitipação</h4>
 					        <p class="white-text">
@@ -124,15 +167,60 @@
 					    </div>
 					</div>
 				</div>
-				<div class="col-md-6">
-					<div class="card card-info text-xs-center z-depth-2">
+				<div class="col-md-4">
+					<div class="card teal darken-1 text-xs-center z-depth-1">
 					    <div class="card-block">
-					    	<h4 class="card-title white-text">Por equipe</h4>
+					    	<h4 class="card-title white-text">Qunatidade por equipe</h4>
 					        <p class="white-text"><?php echo $evento->row()->quantity_players;?></p>
+					    </div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card card-danger text-xs-center z-depth-1">
+					    <div class="card-block">
+					    	<h4 class="card-title white-text">Número de inscritos</h4>
+					        <p class="white-text"><?php echo $total_inscritos;?></p>
 					    </div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!--/geral-->
+	<!--Endereco-->
+	<div class="card card-block">
+		<h4 class="card-title">Endereço</h4>
+		<div class="card-text m-t-2">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="col-md-12">
+						<dl class="dl-horizontal">							  
+							  <dt class="col-sm-3">Estado</dt>
+							  <dd class="col-sm-9"><?php echo $endereco->row()->estado; ?></dd>
+
+							  <dt class="col-sm-3">Cidade</dt>
+							  <dd class="col-sm-9"><?php echo $endereco->row()->cidade;?></dd>
+
+							  <dt class="col-sm-3">Biarro</dt>
+							  <dd class="col-sm-9">
+								  <?php 
+								  		$bairro = $endereco->row()->district;
+								  		echo $bairro !== "" ? $bairro : "Sem endereço";
+								  ?>
+							  </dd>
+
+							  <dt class="col-sm-3">Rua</dt>
+							  <dd class="col-sm-9">
+							  <?php 
+								  	$rua = $endereco->row()->street;
+								  	echo $rua !== "" ? $rua : "Sem endereço";
+							  	?>
+							  </dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/endereco-->
 </div>

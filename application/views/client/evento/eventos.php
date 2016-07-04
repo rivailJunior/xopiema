@@ -1,3 +1,9 @@
+<style type="text/css">
+	.overlay img{
+		width: 100%;
+		max-height: 320px;
+	}
+</style>
 <script type="text/javascript">
 	$(document).ready(function (){
 		$(".pagination a").click(function (){
