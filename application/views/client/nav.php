@@ -124,7 +124,4 @@
 <script>
     $(".button-collapse").sideNav();
 </script>
-<script type="text/javascript">
-    Waves.attach('.navbar li', ['waves-light']);
-    Waves.init();
-</script>
+
