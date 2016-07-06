@@ -59,3 +59,43 @@ function saveAndReload(objeto) {
 			}
 	});
 };//fim function
+
+/**
+* realiza cadastro de formulario que nao possui input['file']
+* params - objeto['url','formulario', 'msgsuccess','msgerror', 'idformulario']
+*  	IMPORTANTE - o formulario precisa estar serializado ex: $("#idformulario").serialize();
+*/
+function save(objeto) {
+	$.ajax({
+		url:objeto.url,
+		type:"post",
+		data:{
+			'formulario' : JSON.stringify(objeto.formulario) 
+		},
+		success:function (response) {
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "0",
+                "hideDuration": "0",
+                "timeOut": "4000",
+                "extendedTimeOut": "0",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+			if(response == true){
+				$("#"+objeto.idformulario)[0].reset();
+	            toastr.success(objeto.msgsuccess);
+        	}else{
+        		toastr.info(objeto.msgerror);
+        	}
+		},
+		error:function (error) {
+			console.log("info", error);
+		}
+	})
+}

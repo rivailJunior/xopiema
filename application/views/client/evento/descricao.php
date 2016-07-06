@@ -15,9 +15,15 @@ overflow-y: scroll;
 height: 400px; 
 }
 </style>
+
 <div class="container m-t-1">
+	
+	<div class="list-group">
+		<a href="<?php echo site_url('eventocontroller/ingresso/'.$evento->row()->id)?>" 
+		class="list-group-item red white-text">Confirmar presença</a>
+	</div>
 	<!--Descricao-->
-	<div class="card card-block">
+	<div class="card card-block m-t-1">
 		<h4 class="card-title text-fluid"> <i class="fa fa-file-text "></i> Sobre o evento</h4>
 		<h4 class="card-title m-t-2 text-fluid text-muted"><?php echo $evento->row()->short_description;?></h4>
 		<div class="card-text">
@@ -90,13 +96,13 @@ height: 400px;
 		<h4 class="card-title"><i class="fa fa-info-circle"></i> Geral</h4>
 		<div class="card-text m-t-2">
 			<div class="row">	
-				<div class="col-md-10">
+				<div class="col-md-10 col-sm-8">
 					<blockquote class="blockquote bq-warning">
 			   			<p class="bq-title">Participantes ou visitantes...</p>
 			   			<p class="text-muted"><?php echo $evento->row()->descricao_regras;?></p>
 					</blockquote>
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-2 col-sm-4">
 					<blockquote class="blockquote bq-warning">
 						<p class="bq-title">Data</p>
 						<p class="text-muted">
@@ -108,7 +114,7 @@ height: 400px;
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-3 col-sm-4">
 					<div class="card teal darken-1 text-xs-center z-depth-1">
 					    <div class="card-block">
 					    	<h4 class="card-title white-text">Total vagas</h4>
@@ -121,7 +127,7 @@ height: 400px;
 					    </div>
 					</div>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3 col-sm-4">
 					<div class="card teal darken-1 text-xs-center z-depth-1">
 					    <div class="card-block">
 					    	<h4 class="card-title white-text">Valor participante</h4>
@@ -133,7 +139,7 @@ height: 400px;
 					    </div>
 					</div>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3 col-sm-4">
 					<div class="card teal darken-3 text-xs-center z-depth-1">
 					    <div class="card-block">
 					    	<h4 class="card-title white-text">Valor Visitante</h4>
@@ -146,7 +152,7 @@ height: 400px;
 					    </div>
 					</div>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3 col-sm-4">
 					<div class="card teal darken-3 text-xs-center z-depth-1">
 					    <div class="card-block">
 					    	<h4 class="card-title white-text">Vagas visitantes</h4>
@@ -161,7 +167,7 @@ height: 400px;
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-3 col-sm-4">
 					<div class="card  teal darken-3 text-xs-center z-depth-1">
 					    <div class="card-block">
 					    	<h4 class="card-title white-text">Formato parcitipação</h4>
@@ -175,7 +181,7 @@ height: 400px;
 					    </div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-3 col-sm-4">
 					<div class="card teal darken-1 text-xs-center z-depth-1">
 					    <div class="card-block">
 					    	<h4 class="card-title white-text">Qunatidade por equipe</h4>
@@ -183,11 +189,19 @@ height: 400px;
 					    </div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-3 col-sm-4">
 					<div class="card card-danger text-xs-center z-depth-1">
 					    <div class="card-block">
 					    	<h4 class="card-title white-text">Número de inscritos</h4>
 					        <p class="white-text"><?php echo $total_inscritos;?></p>
+					    </div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-4">
+					<div class="card card-danger text-xs-center z-depth-1">
+					    <div class="card-block">
+					    	<h4 class="card-title white-text">Participantes inscritos</h4>
+					        <p class="white-text"><?php echo $total_participantes;?></p>
 					    </div>
 					</div>
 				</div>

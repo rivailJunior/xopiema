@@ -1,4 +1,4 @@
-<div class="fixed-action-btn smooth-scroll" style="bottom: 30px; right: 50px;">
+<div class="fixed-action-btn smooth-scroll" style="bottom: 30px; right: 10px;">
     <a href="#nav" class="btn-floating btn-large teal darken-3">
         <i class="fa fa-arrow-up"></i>
     </a>

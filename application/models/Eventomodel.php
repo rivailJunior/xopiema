@@ -6,7 +6,10 @@
 	class Eventomodel extends CI_Model
 	{
 		
-
+		/**
+		* @author rivail santos
+		* realiza cadastro de evento
+		*/
 		public function create($evento, $fotos, $endereco, $regras, $categoria)
 		{
 			$this->load->helper('string');
@@ -115,7 +118,10 @@
 			return $this->db->query($sql);
 		}// fim function
 
-
+		/**
+		* @author rivail santos
+		* retorna descricao do evento
+		*/
 		public function getEventoDescricao($id, $objeto)
 		{
 			$this->db->select('evento.*, usuario.*, regras_evento.*, regras_evento.short_description as descricao_regras');
@@ -130,10 +136,11 @@
 		
 		//retorna total de participantes do evento pelo id do evento
 		//params - id do evento
-		public function getTotalInscritos($id)
-		{
-			return $this->db->get_where('inscricao_participante', array('id'=>$id))->num_rows();
-		}
+		public function getTotalInscritos($tipo,$id)
+		{	 $type = $tipo == 'visitante' ? 'inscricao_visitante' : 'inscricao_participante';
+			echo $type;
+			 return $this->db->get_where($type, array('id_evento' => $id));
+		}//fim
 
 		//retorna o endereco do evento
 		public function getEnderecoEvento($id)
@@ -144,7 +151,16 @@
 					where e.id = ".$id;
 			return $this->db->query($sql);
 		}//fim
-		 
+		
+		/**
+		* @author rivail santos
+		* realiza inscricao do visitante no evento
+		*/ 
+		public function inscricao($data)
+		{
+			return $this->db->insert('inscricao_visitante', $data);
+		}//fim 
+		 //
 	}//fim class
 
 

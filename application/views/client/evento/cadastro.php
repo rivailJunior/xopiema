@@ -1,7 +1,6 @@
 <?php 
 	//load the helpers
 	$this->load->helper('string');					
-
  ?>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/bootstrap-input/css/fileinput.min.css'); ?>">
 <style type="text/css">
@@ -84,7 +83,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 							<textarea  name="short_description" required class="md-textarea validate" 
 							placeholder="Faça uma breve observação das regras do evento"
 							length="140" maxlength="140"></textarea>
-							<label for="form9" data-error="Invalido" data-success="ok">Breve descrição</label>
+							<label for="form9" data-error="Invalido" data-success="ok">
+							<code>*</code>Breve descrição</label>
 							
 						</div>
 					</div>
@@ -96,7 +96,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 							<i class="fa fa-file-text prefix"></i>
 							<textarea name="description" required class="md-textarea validate" 
 							length="300" maxlength="300" placeholder="Faça uma breve observação das regras do evento"></textarea>
-							<label for="form9" data-error="Invalido" data-success="ok">Descrição detalhada</label>
+							<label for="form9" data-error="Invalido" data-success="ok">
+							<code>*</code>Descrição detalhada</label>
 						</div>
 					</div>
 				</div>
@@ -107,7 +108,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 							<i class="fa fa-calendar prefix"></i>
 							<input type="text" id="event_date" class="form-control datepicker" required  
 							name="event_date" placeholder="Data do evento">
-							<label for="form9" data-error="Invalido" data-success="ok">Data Realização</label>
+							<label for="form9" data-error="Invalido" data-success="ok">
+							<code>*</code>Data Realização</label>
 						</div>
 					</div>
 					<div class="col-md-5">
@@ -124,7 +126,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 								 }
 								 ?>
 							</select>
-							<label for="form9" data-error="Invalido" data-success="ok">Categoria do Evento</label>
+							<label for="form9" data-error="Invalido" data-success="ok">
+							<code>*</code>Categoria do Evento</label>
 						</div>
 					</div>
 				</div>
@@ -134,7 +137,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 		<!--/card block-->
 
 		<div class="card card-block">
-			<h4 class="card-title m-b-3"><i class="fa fa-picture-o"></i> Fotos</h4>
+			<h4 class="card-title m-b-3"><i class="fa fa-picture-o"></i> <code>*</code>Fotos</h4>
 				<div class="row">
 					<div class="col-md-10">
 						<input id="file-input" required type="file" name="userfile[]" multiple="multiple" class="file-loading" >	
@@ -217,7 +220,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 						<div class="md-form">
 							<textarea name="short_description_rules" required class="md-textarea validate" 
 							length="140" maxlength="140" placeholder="Faça uma breve observação das regras do evento"></textarea>
-							<label for="form9" data-error="inválido" data-success="ok">Observações</label>
+							<label for="form9" data-error="inválido" data-success="ok">
+							<code>*</code>Observações</label>
 						</div>
 					</div>
 				</div>
@@ -242,7 +246,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 								 }
 								 ?>
 							</select>
-							<label for="form9" data-error="inválido" data-success="ok">Estado</label>
+							<label for="form9" data-error="inválido" data-success="ok">
+							<code>*</code>Estado</label>
 						</div>
 					</div>
 					<div class="col-md-5">
@@ -251,7 +256,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 								<option id="optCidades" disabled selected>Selecione Cidade</option>
 
 							</select>
-							<label for="form9" data-error="inválido" data-success="ok">Cidade</label>
+							<label for="form9" data-error="inválido" data-success="ok">
+							<code>*</code>Cidade</label>
 						</div>
 					</div>
 				</div>
@@ -260,8 +266,9 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 						<div class="md-form">
 							<input type="text" class="form-control validate" 
 								placeholder="Digite a localização do evento" 
-								required  name="street" length="100" maxlength="100">
-							<label for="form9" data-error="inválido" data-success="ok">Logradouro</label>
+							    required  name="street" length="100" maxlength="100">
+							<label for="form9" data-error="inválido" data-success="ok">
+							<code>*</code>Logradouro</label>
 						</div>
 					</div>
 					<div class="col-md-5">
@@ -269,7 +276,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 							<input type="text" class="form-control validate" 
 								placeholder="Ex: Ponta negra" 
 								required  name="district" length="100" maxlength="100">
-							<label for="form9" data-error="inválido" data-success="ok">Bairro</label>
+							<label for="form9" data-error="inválido" data-success="ok">
+							<code>*</code>Bairro</label>
 						</div>
 					</div>
 				</div>
