@@ -1,9 +1,10 @@
     <script type="text/javascript">
         $(document).ready(function (){
-            $("#senhauser").attr('disabled', 'true');
-    
-            $("#loginuser").blur(function() {
-                var login = $(this).val();
+            //$("#senhauser").attr('disabled', 'true');
+            $("#divSenha").hide();
+            $("#btLogar").hide();
+            $("#btContinuar").click(function() {
+                var login = $("#loginuser").val();
                 $.ajax({
                     url:"<?php echo site_url('logincontroller/checkuser'); ?>",
                     type:"post",
@@ -11,12 +12,15 @@
                         "dados": login
                     },
                     success:function (res){
+                    console.log('res ' , res);
                         if (res==1) {
-                            $("#senhauser").removeAttr('disabled', function (){
-                                getElementById('senhauser').focus;
-                            });
+                            $("#btContinuar").hide(function (){
+                                $("#btLogar").show('slow');
+                                $("#divSenha").show('slow');
+                            })
+                            
+
                         } else {
-                            //$("#senhauser").attr('disabled', 'true');
                             toastr.error('Usuario não cadastrado');
                         }
                     },
@@ -74,29 +78,31 @@
             </div>
             <!--Body-->
             <div class="modal-body">
-                <form id="formLogin" accept-charset="utf-8">
+                <form id="formLogin" accept-charset="utf-8" autocomplete="off">
                     <p>Entre com seu login e senha!</p>
                     <br>
                     <div class="md-form">
                         <i class="fa fa-user prefix"></i>
-                        <input type="email" id="loginuser" placeholder="Ex: seu_login@gmail.com" name="login" class="form-control">
+                        <input type="email" id="loginuser" placeholder="Ex: seu_login@gmail.com" name="login" 
+                         autocomplete="off" class="form-control">
                         <label for="form22">Login</label>
                     </div>
 
-                    <div class="md-form">
+                    <div class="md-form" id="divSenha">
                         <i class="fa fa-ellipsis-h  prefix"></i>
                         <input type="password" id="senhauser" placeholder="********" name="senha" class="form-control">
                         <label for="form32">Senha</label>
                     </div>
 
                     <div class="text-xs-center">
-                        <button class="btn btn-success" >Logar</button>
+                        <a id="btContinuar" class="btn default-color" >Continuar</a>
+                        <button id="btLogar" class="btn default-color" >Logar</button>
                     </div>
                 </form>
             </div>
             <!--Footer-->
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn danger-color" data-dismiss="modal">Fechar</button>
             </div>
         </div>
         <!--/.Content-->

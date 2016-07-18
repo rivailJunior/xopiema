@@ -1,5 +1,4 @@
-    
-<div class="container m-t-1">
+    <div class="container m-t-1">
     <div class="card card-block" >
 		<div class="row">
 				<h5 class="h4-responsive m-l-1">Voce é apaixonado por esportes?

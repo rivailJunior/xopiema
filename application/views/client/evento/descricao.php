@@ -16,8 +16,7 @@ height: 400px;
 }
 </style>
 
-<div class="container m-t-1">
-	
+<div class="container">
 	<div class="list-group">
 		<a href="<?php echo site_url('eventocontroller/ingresso/'.$evento->row()->id)?>" 
 		class="list-group-item red white-text">Confirmar presença</a>

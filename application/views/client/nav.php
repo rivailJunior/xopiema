@@ -1,26 +1,3 @@
-<style type="text/css">
-    .linkRigth{
-        margin-top: .425rem;
-        font-size: 16px;
-        font-weight: 400;
-        
-    }
-    .linkRigth a{
-        color:rgba(255,255,255,.5);
-    }
-    
-    .btn-login:hover{
-        color:white;
-    }
-    .btn-cadastro:hover{
-        color:white;
-        }
-    .logo img{
-        float: left;
-        padding: 5px;
-    }
-</style>
-
 <!--Navbar-->
 <nav id="nav" class="navbar  teal darken-3 navbar-dark navbar-fixed-top">
     <!--Collapse button-->

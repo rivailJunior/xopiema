@@ -100,7 +100,7 @@
 					<div class="col-md-10">
 						<div class="form-group">
 							<span> </span>
-							<button type="submit" class="btn btn-success" >Salvar</button>
+							<button type="submit" class="btn default-color" >Salvar</button>
 						</div>							
 					</div>
 				</div>
