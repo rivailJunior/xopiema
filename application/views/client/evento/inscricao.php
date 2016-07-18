@@ -76,7 +76,7 @@
 				</div>
 				<div class="row">
 					<div class="md-form">
-						<button type="submit" class="btn btn-success">Salvar</button>
+						<button type="submit" class="btn default-color">Confirmar</button>
 					</div>
 				</div>
 			</form>

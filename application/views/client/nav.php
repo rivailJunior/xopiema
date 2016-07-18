@@ -28,7 +28,7 @@
                  >Eventos</a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="<?php echo site_url('eventocontroller/index') ?>">Ver todos</a>
-                    <a class="dropdown-item" href="#">Meus Evento</a>
+                    <a class="dropdown-item" href="<?php echo site_url('eventocontroller/personalEvents/')?>">Meus Evento</a>
                     <a class="dropdown-item" href="#">Meus Interesses</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="<?php echo site_url('eventocontroller/cadastro')?>">Criar Evento</a>

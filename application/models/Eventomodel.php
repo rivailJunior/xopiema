@@ -138,17 +138,17 @@
 		//params - id do evento
 		public function getTotalInscritos($tipo,$id)
 		{	 $type = $tipo == 'visitante' ? 'inscricao_visitante' : 'inscricao_participante';
-			echo $type;
-			 return $this->db->get_where($type, array('id_evento' => $id));
+		echo $type;
+		return $this->db->get_where($type, array('id_evento' => $id));
 		}//fim
 
 		//retorna o endereco do evento
 		public function getEnderecoEvento($id)
 		{
 			$sql = "select etd.*, c.*, e.*, c.nome as cidade, etd.nome as estado from endereco e
-					inner join cidade c on c.id = e.id_city
-					inner join estado etd on etd.id = c.estado
-					where e.id = ".$id;
+			inner join cidade c on c.id = e.id_city
+			inner join estado etd on etd.id = c.estado
+			where e.id = ".$id;
 			return $this->db->query($sql);
 		}//fim
 		
@@ -160,7 +160,43 @@
 		{
 			return $this->db->insert('inscricao_visitante', $data);
 		}//fim 
-		 //
+		
+
+		/**
+		* @author rivail santos
+		* verifica se o usuario ja nao esta inscrito no evento;
+		*/
+		public function verifyInscriptions($user)
+		{
+			$this->db->select('*');
+			$this->db->from('inscricao_visitante iv');
+			$this->db->where('long_name', $user['long_name']);
+			$this->db->where('id_usuario', $user['id_usuario']);
+			$this->db->where('email', $user['email']);
+			return $this->db->get();
+		}//fim function 
+		
+
+		/**
+		* @author rivail santos
+		* retorna todos os eventos cadastrados pelo participante
+		*/
+		public function personalEvents($user)
+		{	
+			$fields = " e.*,e.description as evento, 
+						c.nome, et.nome, re.*, re.short_description as regras,
+    					(select count(*) from inscricao_visitante iv where iv.id_evento = e.id) as visitantes,
+    					(select count(*) from inscricao_participante ip where ip.id_evento = e.id )as participantes";
+			$this->db->select($fields);
+			$this->db->from('evento e');
+			$this->db->join('regras_evento re', 'e.id = re.id_evento', 'left');
+			$this->db->join('endereco ed', 'e.id = ed.id_conect_table', 'left');
+			$this->db->join('cidade c', 'ed.id_city = c.id');
+			$this->db->join('estado et', 'et.id = c.estado');
+			$this->db->where('e.id_usuario', $user);
+			$this->db->where('ed.conection_table', 'evento');
+			return $this->db->get();
+		}//fim
 	}//fim class
 
 

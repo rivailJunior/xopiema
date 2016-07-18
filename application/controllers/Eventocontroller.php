@@ -215,7 +215,7 @@
 			}
 		}//fim
 		
-		function verificaEmailVisitante($email = null)
+		public function verificaEmailVisitante($email = null)
 		{
 			$verify = null;
 			if(isset($email)){
@@ -251,14 +251,34 @@
 			$inscricao['id_usuario'] = $this->getUserId();
 			$inscricao['created_at'] = date('y-m-d');
 
-			$create = $this->eventomodel->inscricao($inscricao);
-			if($create) {
-				echo true;
-			} else {
+			$permition = $this->eventomodel->verifyInscriptions($inscricao);
+			if($permition->num_rows() == 0){
+				$create = $this->eventomodel->inscricao($inscricao);
+				if($create) {
+					echo true;
+				} else {
+					echo false;
+				}
+			}else{
 				echo false;
 			}
-
 		}//fim
+		
+
+		public function personalEvents()
+		{
+			$user = $this->getUserId();
+			if(isset($user)){
+				$this->data['eventos'] = $this->eventomodel->personalEvents($user);
+				$this->load->view('client/header', $this->data);
+				$this->load->view('client/nav-bar-header', $this->data);
+				$this->load->view('client/evento/personal_events', $this->data);
+				$this->load->view('client/nav-bar-footer', $this->data);
+				$this->load->view('client/footer', $this->data);
+			}
+		}//fim function
+		
+
 
 
 	}//fim da class
