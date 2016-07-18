@@ -284,7 +284,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 				<div class="row">
 					<div class="col-md-10">
 						<div class="md-form">
-							<button type="submit" type="submit" class="btn btn-success" >Salvar</button>
+							<button type="submit" type="submit" class="btn default-color" >Salvar</button>
 						</div>
 					</div>
 				</div>
