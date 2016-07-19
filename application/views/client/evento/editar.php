@@ -67,7 +67,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 	echo  form_open_multipart('eventocontroller/create', $attributes);
 	?>
 		<div class="card card-block">
-			<h4 class="card-title">Cadastro de evento</h4>
+			<h4 class="card-title">Edicao do evento</h4>
 			<div class="card-text">			
 				<h4 class="card-title m-b-3"><i class="fa  fa-info-circle "></i> Informações Gerais</h4>
 
@@ -77,7 +77,9 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 							<i class="fa fa-file-text-o prefix"></i>
 							<textarea  name="short_description" required class="md-textarea validate" 
 							placeholder="Faça uma breve observação das regras do evento"
-							length="140" maxlength="140"></textarea>
+							length="140" maxlength="140">
+								<?php echo $evento->row()->evento_name;?>
+							</textarea>
 							<label for="form9" data-error="Invalido" data-success="ok">
 							<code>*</code>Breve descrição</label>
 							
@@ -90,7 +92,9 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 						<div class="md-form">
 							<i class="fa fa-file-text prefix"></i>
 							<textarea name="description" required class="md-textarea validate" 
-							length="300" maxlength="300" placeholder="Faça uma breve observação das regras do evento"></textarea>
+							length="300" maxlength="300" placeholder="Faça uma breve observação das regras do evento">
+								<?php echo $evento->row()->evento_descricao;?>
+							</textarea>
 							<label for="form9" data-error="Invalido" data-success="ok">
 							<code>*</code>Descrição detalhada</label>
 						</div>
@@ -102,25 +106,14 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 						<div class="md-form">
 							<i class="fa fa-calendar prefix"></i>
 							<input type="text" id="event_date" class="form-control datepicker" required  
-							name="event_date" placeholder="Data do evento">
+							name="event_date" placeholder="Data do evento" value="<?php echo $evento->row()->event_date;?>">
 							<label for="form9" data-error="Invalido" data-success="ok">
 							<code>*</code>Data Realização</label>
 						</div>
 					</div>
 					<div class="col-md-5">
 						<div class="md-form">
-							<select class="mdb-select"  name="categoria[]" placeholder="Selecione Categoria" multiple>
-								<OPTION value="" disabled>Selectione Categoria</OPTION>
-								<?php 
-										foreach($categoria->result() as $cat) {
-											$string = $cat->category_name. "/".$cat->short_descriptino;
-								 ?>
-								 <option value="<?php echo $cat->id;?>"> <?php echo trim_slashes($string);?> </option>
-								 <?php
-								 	
-								 }
-								 ?>
-							</select>
+					
 							<label for="form9" data-error="Invalido" data-success="ok">
 							<code>*</code>Categoria do Evento</label>
 						</div>
@@ -144,18 +137,19 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 		<div class="card card-block">
 			<h4 class="card-title"><i class="fa fa-check-circle"></i> Regras do Evento</h4>
 			<div class="card-text">
-
 				<div class="row">
 					<div class="col-md-5">
 						<div class="md-form">
 							<div class="form-inline">
+								<?php $players = $evento->row()->players == 'single'? 'checked' : '';?>
 								<fieldset class="form-group">
-									<input name="players" checked="checked" required type="radio" value="single" class="with-gap" 
+									<input name="players" <?php echo $players;?> required type="radio" value="single" class="with-gap" 
 									id="radio1">
 									<label for="radio1">Individual</label>
 								</fieldset>
+								<?php $players = $evento->row()->players == 'team'? 'checked' : '';?>
 								<fieldset class="form-group">
-									<input name="players"  value="team" type="radio" class="with-gap" id="radio2">
+									<input name="players" <?php echo $players;?>  value="team" type="radio" class="with-gap" id="radio2">
 									<label for="radio2">Equipe</label>
 								</fieldset>
 							</div>
@@ -166,7 +160,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 					<div class="col-md-5">
 						<div class="md-form">
 							<input type="text" id="vacancies" class="form-control" 
-							placeholder="Ex: 100" name="vacancies">
+							placeholder="Ex: 100" name="vacancies"
+							value="<?php echo $evento->row()->vacancies;?>">
 							<label for="form9" data-error="Invalido"  data-success="ok">Total vagas para participantes
 							<small class="text-danger">Vagas ilimitadas, favor desconsiderar campo</small></label>
 						</div>
@@ -176,7 +171,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 					<div class="col-md-5" id="equipe">
 						<div class="md-form">
 							<input type="text" id="quantity_players" class="form-control" 
-							placeholder="Ex: 5" name="quantity_players">
+							placeholder="Ex: 5" name="quantity_players"
+							value="<?php echo $evento->row()->quantity_players;?>">
 							<label for="form9" data-error="Invalido"  data-success="ok">
 							Quantidade por equipe <small class="text-danger">Caso especifico para equipe</small></label>
 						</div>
@@ -184,7 +180,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 					<div class="col-md-5">
 						<div class="md-form">	
 							<input type="text" id="inscription_value" class="form-control" 
-							placeholder="Ex: R$ 50.00" name="inscription_value">
+							placeholder="Ex: R$ 50.00" name="inscription_value"
+							value="<?php echo $evento->row()->inscription_value;?>">
 							<label for="form9" data-error="Invalido" data-success="ok">Valor Inscrição
 							<small class="text-danger">Evento gratuito, favor desconsiderar campo</small></label>
 						</div>
@@ -194,7 +191,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 					<div class="col-md-5">
 						<div class="md-form">
 							<input type="text" id="quantity_visitors" class="form-control" 
-							placeholder="Ex: 100" 
+							placeholder="Ex: 100" value="<?php echo $evento->row()->quantity_visitors;?>"
 							name="quantity_visitors">
 							<label for="form9" data-error="Invalido"  data-success="ok">Total vagas para visitantes
 							<small class="text-danger">Vagas ilimitadas, favor desconsiredar campo</small></label>
@@ -203,7 +200,8 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 					<div class="col-md-5">
 						<div class="md-form">
 							<input type="text" id="entry_value" class="form-control" 
-							placeholder="Ex: R$ 10.00"  name="entry_value">
+							placeholder="Ex: R$ 10.00"  name="entry_value"
+							value="<?php echo $evento->row()->entry_value;?>">
 							<label for="form9" data-error="Invalido" data-success="ok">Valor Inscrição Visitante, 
 							<small class="text-danger">Evento gratuito, favor desconsiderar campo</small></label>
 						</div>
@@ -214,7 +212,9 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 					<div class="col-md-10">
 						<div class="md-form">
 							<textarea name="short_description_rules" required class="md-textarea validate" 
-							length="140" maxlength="140" placeholder="Faça uma breve observação das regras do evento"></textarea>
+							length="140" maxlength="140" placeholder="Faça uma breve observação das regras do evento">
+								<?php echo $evento->row()->descricao_regras;?>
+							</textarea>
 							<label for="form9" data-error="inválido" data-success="ok">
 							<code>*</code>Observações</label>
 						</div>
@@ -230,16 +230,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 					<div class="col-md-5">
 						<div class="md-form">
 							<select id="selectEstado" required name="estado" class="mdb-select">
-								<option  disabled selected>Selecione Estado</option>
-								<?php 
-									if($estado->num_rows() > 0){
-										foreach ($estado->result() as $row) {		
-								 ?>
-								 	<option value="<?php echo $row->id; ?>"><?php echo $row->nome;?></option>
-								 <?php
-								 	}
-								 }
-								 ?>
+							
 							</select>
 							<label for="form9" data-error="inválido" data-success="ok">
 							<code>*</code>Estado</label>
@@ -261,6 +252,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 						<div class="md-form">
 							<input type="text" class="form-control validate" 
 								placeholder="Digite a localização do evento" 
+								value="<?php echo $evento->row()->street;?>"
 							    required  name="street" length="100" maxlength="100">
 							<label for="form9" data-error="inválido" data-success="ok">
 							<code>*</code>Logradouro</label>
@@ -270,6 +262,7 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 						<div class="md-form">
 							<input type="text" class="form-control validate" 
 								placeholder="Ex: Ponta negra" 
+								value="<?php echo $evento->row()->district;?>"
 								required  name="district" length="100" maxlength="100">
 							<label for="form9" data-error="inválido" data-success="ok">
 							<code>*</code>Bairro</label>
@@ -279,9 +272,10 @@ $("#optCidades").prepend("<option value='teste'>teste</option>");
 						<div class="md-form">
 							<input type="text" class="form-control validate" 
 								placeholder="Ex: A32" 
-								required  name="local_number" length="10" maxlength="100">
+								value="<?php echo $evento->row()->local_number;?>"
+								required  name="local_number" length="100" maxlength="100">
 							<label for="form9" data-error="inválido" data-success="ok">
-							Numero</label>
+							<code>*</code>Numero</label>
 						</div>
 					</div>
 				</div>

@@ -24,7 +24,7 @@ height: 400px;
 	<!--Descricao-->
 	<div class="card card-block m-t-1">
 		<h4 class="card-title text-fluid"> <i class="fa fa-file-text "></i> Sobre o evento</h4>
-		<h4 class="card-title m-t-2 text-fluid text-muted"><?php echo $evento->row()->short_description;?></h4>
+		<h4 class="card-title m-t-2 text-fluid text-muted"><?php echo $evento->row()->evento_name;?></h4>
 		<div class="card-text">
 			<div class="row">
 				<div class="col-md-6 m-t-2">	
@@ -81,7 +81,7 @@ height: 400px;
 				</div>
 				<div class="col-md-6 m-t-2">
 					<h4 class="card-title"> ... </h4>
-					<blockquote class="blockquote text-muted">" <?php echo $evento->row()->description;?> "
+					<blockquote class="blockquote text-muted">" <?php echo $evento->row()->evento_descricao;?> "
 					<footer class="blockquote-footer">
 					<cite title="Source Title"><?php echo $evento->row()->last_name;?></cite></footer>
 					</blockquote>

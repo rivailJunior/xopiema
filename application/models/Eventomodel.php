@@ -87,26 +87,6 @@
 			inner join cidade c on c.id = ed.id_city
 			inner join estado est on est.id = c.estado
 			where ed.conection_table = 'evento' group by e.id order by e.id desc";
-
-
-			/*$sql = "select
-			e.id as id_evento,
-			e.short_description,
-			e.description,
-			date_format(e.event_date,'%d-%m-%Y') as event_date,
-			e.id_usuario,
-			re.players as format,
-			re.quantity_players,
-			re.quantity_visitors,
-			re.entry_value,
-			re.inscription_value,
-			re.short_description,
-			re.vacancies as vagas,
-			(select ft.picture from evento_fotos ft where e.id=ft.id_evento order by id desc limit 1) as foto,
-			c.nome as cidade,
-			est.nome as estado from evento e,regras_evento re,endereco en,cidade c,estado est
-			where e.id=re.id_evento and en.id_conect_table=e.id and en.id_city=c.id and c.estado = est.id order by e.id desc";*/
-
 			
 			if($limit != null) {
 				$sql .=" limit  ".$limit."";
@@ -124,13 +104,21 @@
 		*/
 		public function getEventoDescricao($id, $objeto)
 		{
-			$this->db->select('evento.*, usuario.*, regras_evento.*, regras_evento.short_description as descricao_regras');
+			$this->db->select('evento.*, 
+				evento.short_description as evento_name, 
+				evento.description as evento_descricao, 
+				endereco.*,
+				usuario.*, 
+				regras_evento.*, 
+				regras_evento.short_description as descricao_regras');
 			$this->db->from('evento');
 			foreach ($objeto as $idnex => $value) {
 				$this->db->join($value, $value.'.id_evento = evento.id', 'left');	
 			}
+			$this->db->join('endereco', 'endereco.id_conect_table = evento.id', 'left');
 			$this->db->join('usuario', 'evento.id_usuario = usuario.id', 'left');
 			$this->db->where('evento.id', $id);
+			$this->db->where('endereco.conection_table', 'evento');
 			return $this->db->get();	
 		}//fim
 		
@@ -183,7 +171,7 @@
 		*/
 		public function personalEvents($user)
 		{	
-			$fields = " e.*,e.description as evento_descricao, e.short_description as evento_name,
+			$fields = " e.*,e.description as evento_descricao, e.short_description as evento_name, e.id as evento_id,
 						c.nome, et.nome, re.*, re.short_description as regras,
     					(select count(*) from inscricao_visitante iv where iv.id_evento = e.id) as visitantes,
     					(select count(*) from inscricao_participante ip where ip.id_evento = e.id )as participantes";

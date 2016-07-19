@@ -140,6 +140,7 @@
 				$evento['created_at'] = date('y-m-d');
 				$evento['id_usuario'] = $this->getUserId();
 
+
 				//objeto regras
 				$regras['players'] = $this->input->post('players');
 				//total vagas para visitantes
@@ -167,6 +168,7 @@
 				$endereco['id_city'] = $this->input->post('city');
 				$endereco['street'] = trim(strtolower($this->input->post('street')));
 				$endereco['district'] = trim(strtolower($this->input->post('district')));
+				$endereco['local_number'] = trim(strtolower($this->input->post('local_number')));
 
 				$ret = $this->eventomodel->create($evento, $fotos, $endereco, $regras, $categoria);
 				$response = null;
@@ -264,7 +266,6 @@
 			}
 		}//fim
 		
-
 		public function personalEvents()
 		{
 			$user = $this->getUserId();
@@ -277,6 +278,33 @@
 				$this->load->view('client/footer', $this->data);
 			}
 		}//fim function
+		
+		/**
+		* @author rivail santos
+		* abre tela para edicao de evento
+		*/
+		public function edit($id)
+		{
+			if(isset($id)) {
+				$table['table'] = "regras_evento";
+				$this->data['evento'] = $this->eventomodel->getEventoDescricao($id, $table);		
+				if($this->data['evento']->num_rows() > 0){
+					$this->data['total_participantes'] = $this->eventomodel->getTotalInscritos('participante', $id)->num_rows();
+					$this->data['total_inscritos'] = $this->eventomodel->getTotalInscritos('visitante',$id)->num_rows();
+					$this->data['endereco'] = $this->eventomodel->getEnderecoEvento($id);
+					$this->data['title'] = $this->data['evento']->row()->evento_name;
+					$this->load->view('client/header', $this->data);
+					$this->load->view('client/nav-bar-header', $this->data);
+					$this->load->view('client/evento/editar', $this->data);
+					$this->load->view('client/nav-bar-footer', $this->data);
+					$this->load->view('client/footer', $this->data);	
+				} else {
+					$this->index();
+				}
+			} else {
+				$this->index();
+			}
+		}//fim
 		
 
 

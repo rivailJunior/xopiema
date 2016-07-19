@@ -23,7 +23,7 @@
 			  			}
 			   ?>
 
-                <a class="list-group-item">
+                <a class="list-group-item" href="<?php echo site_url('eventocontroller/edit/'.$row->evento_id)?>">
                      <h4 class="list-group-item-heading">
                          <?php echo word_limiter($row->evento_name, 5);?>
                      </h4> 
@@ -43,9 +43,6 @@
 			</div>
 		</div>
 </div>
-
-
-
 
 
 <!-- Modal -->
