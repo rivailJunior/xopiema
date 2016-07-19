@@ -183,7 +183,7 @@
 		*/
 		public function personalEvents($user)
 		{	
-			$fields = " e.*,e.description as evento, 
+			$fields = " e.*,e.description as evento_descricao, e.short_description as evento_name,
 						c.nome, et.nome, re.*, re.short_description as regras,
     					(select count(*) from inscricao_visitante iv where iv.id_evento = e.id) as visitantes,
     					(select count(*) from inscricao_participante ip where ip.id_evento = e.id )as participantes";

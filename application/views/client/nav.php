@@ -43,10 +43,10 @@
             </li>
             <?php
                 }
-            ?>
+            ?><!-- 
             <li class="nav-item">
                 <a class="nav-link" href="#/xopiema/">Sobre nós</a>
-            </li>
+            </li> -->
         </ul>    
     </div>
     <div class="col-md-4">
