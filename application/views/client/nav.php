@@ -7,8 +7,8 @@
         <!--Navbar Brand-->
         <div class="col-md-4  logo">
             <a class="navbar-brand" href="/xopiema/"></a> 
-            <img src="<?php echo base_url('/assets/minimun/asset/img/img.png')?>"  height="42" width="42">
-            <img src="<?php echo base_url('/assets/minimun/asset/img/icone_xopiema2.png')?>"  height="42" width="100">
+            <img src="<?php echo base_url('/assets/logo/img.png')?>"  height="42" width="42">
+            <img src="<?php echo base_url('/assets/logo/icone_xopiema2.png')?>"  height="42" width="100">
         </div>
         <div class="col-md-4">
            <!--Links-->
